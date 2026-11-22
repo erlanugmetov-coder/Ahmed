@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Закуп и смены</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: practical kitchen tool for people who are not tech-savvy, big targets
+   IDEA: the paper inventory sheet of LOVE FOOD turned into tappable rows
+   PICTURE: the list itself; live message preview below it
+   COLOUR and TYPE: black and white like their A4 sheet, one red for the heart and actions; Rubik
+   LAYOUT: one column, point and mode at the top, sticky send bar at the bottom */
+:root{color-scheme:light dark;--bg:light-dark(#fff,#121212);--card:light-dark(#f4f4f4,#1e1e1e);--ink:light-dark(#111,#f2f2f2);--mute:light-dark(#6b6b6b,#a3a3a3);--line:light-dark(#e2e2e2,#333);--red:#e3262f;--wa:#1faa59}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Rubik,system-ui,sans-serif;overflow-x:clip;padding-bottom:110px}
+.wrap{max-width:640px;margin:0 auto;padding:0 14px}
+header{background:#111;color:#fff;padding:18px 0 16px}
+h1{margin:0;font-size:30px;line-height:1.05;font-weight:700;letter-spacing:.02em}
+h1 i{color:var(--red);font-style:normal}
+header p{margin:4px 0 0;opacity:.8;font-size:14px}
+.seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:6px;margin-top:12px}
+.seg button{font:inherit;font-size:15px;font-weight:500;min-height:46px;border-radius:10px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;padding:0 6px}
+.seg button b,.seg button small{display:block}.seg button small{font-size:12px;font-weight:400;opacity:.8}#points button{min-height:56px}
+.seg button.on{background:var(--red);border-color:var(--red);color:#fff}
+.mode button.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.lbl{font-size:13px;color:var(--mute);margin:14px 0 -6px}
+.warn{color:var(--red);font-size:14px;margin:8px 0 0;font-weight:500}
+h2{font-size:15px;margin:22px 0 4px;font-weight:700;text-transform:none;background:var(--card);padding:8px 10px;border-radius:8px;display:flex;justify-content:space-between}
+h2 small{color:var(--red);font-weight:700}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;padding:6px 0;border-bottom:1px solid var(--line)}
+.nm{flex:1 1 150px;display:flex;align-items:center;gap:10px;min-height:44px;cursor:pointer}
+.nm input{appearance:none;width:26px;height:26px;border:2px solid var(--line);border-radius:7px;flex:none;display:grid;place-items:center;background:var(--bg);cursor:pointer}
+.nm input:checked{background:var(--red);border-color:var(--red)}
+.nm input:checked::after{content:"";width:7px;height:13px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.row.on .nm span{font-weight:500}
+.ctl{display:flex;align-items:center;gap:4px;flex:none;margin-left:auto}
+.ctl button{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 22px/1 Rubik,sans-serif;cursor:pointer}
+.ctl .q{width:52px;height:44px;text-align:center;font:inherit;font-size:16px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.row.on .q{border-color:var(--red);font-weight:700}
+.ctl select{height:44px;font:inherit;font-size:15px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);padding:0 4px}
+.del{border:0;background:none;color:var(--red);font-size:22px;width:36px;height:44px;cursor:pointer}
+.edit{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 0}
+.edit input,.edit select,.field{flex:1 1 160px;font:inherit;font-size:16px;min-height:46px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.btn{font:inherit;font-size:15px;font-weight:500;min-height:46px;padding:0 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0}
+.prev{background:var(--card);border-radius:12px;padding:14px;margin:22px 0 6px;white-space:pre-wrap;font-size:15px}
+.prev b{display:block;margin-bottom:6px}
+.mute{color:var(--mute);font-size:14px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom))}
+.bar .wrap{display:flex;gap:8px;padding:0}
+.send{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--wa);color:#fff;text-decoration:none;font-weight:700;border-radius:12px;min-height:54px;font-size:17px;text-align:center;padding:0 10px}
+.send.off{background:var(--line);color:var(--mute);pointer-events:none}
+.cnt{background:#fff;color:var(--wa);border-radius:20px;padding:0 8px;font-size:14px}
+.shift{display:grid;gap:12px;margin-top:18px}
+.big{display:flex;align-items:center;justify-content:center;min-height:84px;border-radius:16px;font-size:22px;font-weight:700;color:#fff;text-decoration:none}
+.big.in{background:var(--wa)}.big.out{background:#111}
+:root[data-theme=dark] .big.out{background:#3a3a3a}
+.big.off{background:var(--line);color:var(--mute);pointer-events:none}
+.clock{font-size:44px;font-weight:700;text-align:center;margin:10px 0 0;font-variant-numeric:tabular-nums}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.hide{display:none!important}
+.scroll{overflow-x:auto;margin-top:14px}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th{font-size:13px;color:var(--mute);font-weight:500;text-align:left;padding:6px;border-bottom:2px solid var(--line);white-space:nowrap}
+.tbl td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl td.n,.tbl th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.tbl tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
+.tbl input{width:78px;height:40px;font:inherit;font-size:16px;text-align:right;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);padding:0 6px}
+.sumbox{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:14px}
+.sumbox div{background:var(--card);border-radius:12px;padding:12px}
+.sumbox b{display:block;font-size:24px;line-height:1.1}
+.sumbox span{font-size:13px;color:var(--mute)}
+.prob{background:light-dark(#fff1f1,#2a1616);border-radius:12px;padding:12px;margin-top:14px;font-size:14px}
+.prob b{color:var(--red)}
+details{margin-top:14px}summary{cursor:pointer;font-weight:500;min-height:44px;display:flex;align-items:center}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Закуп <i>и</i> смены</h1>
+  <p>Love Food · Bon Jour · FixBite — отправка в группу WhatsApp</p>
+</div></header>
+
+<main class="wrap">
+  <p class="lbl">Точка</p>
+  <div class="seg" id="points"></div>
+  <p class="warn hide" id="noPoint">Сначала выбери точку</p>
+
+  <p class="lbl">Что отправляем</p>
+  <div class="seg mode" id="modes">
+    <button data-m="buy">🛒 Закуп</button>
+    <button data-m="left">📦 Остатки</button>
+    <button data-m="shift">🕘 Смена</button>
+    <button data-m="tabel">📊 Табель</button>
+  </div>
+
+  <section id="listView">
+    <p class="mute" id="hint" style="margin:14px 0 0"></p>
+    <div id="list"></div>
+    <div class="links">
+      <button class="btn" id="clearBtn">Очистить отметки</button>
+      <button class="btn" id="editBtn">Изменить список</button>
+    </div>
+    <div class="edit hide" id="editBox">
+      <input id="newName" placeholder="Новый продукт">
+      <select id="newCat"></select>
+      <button class="btn" id="addBtn">Добавить</button>
+    </div>
+    <div class="prev" id="prev" aria-live="polite"></div>
+  </section>
+
+  <section id="shiftView" class="hide">
+    <div class="clock" id="clock">--:--</div>
+    <div class="shift">
+      <input class="field" id="who" placeholder="Твоё имя, например Айгерим" autocomplete="name">
+      <a class="big in" id="inBtn" href="#" target="_blank" rel="noopener">Пришёл на смену</a>
+      <a class="big out" id="outBtn" href="#" target="_blank" rel="noopener">Ушёл со смены</a>
+      <p class="mute">Время ставится само в момент нажатия. Имя запомнится на этом телефоне.</p>
+      <p class="mute" id="markStatus"></p>
+    </div>
+  </section>
+
+  <section id="tabelView" class="hide">
+    <div id="pinBox" class="shift">
+      <p class="mute" style="margin:0">Табель для руководителя. Введи PIN-код.</p>
+      <input class="field" id="pin" inputmode="numeric" type="password" placeholder="PIN" autocomplete="off">
+      <button class="btn" id="pinBtn" style="min-height:54px;background:var(--ink);color:var(--bg);border:0">Открыть табель</button>
+    </div>
+    <div id="tabelBox" class="hide">
+      <div class="links" style="align-items:center">
+        <select class="field" id="month" aria-label="Месяц" style="flex:1 1 180px"></select>
+        <button class="btn" id="reloadBtn">Обновить</button>
+      </div>
+      <div id="tabelOut"></div>
+      <div class="links">
+        <button class="btn" id="csvBtn" style="background:var(--wa);color:#fff;border:0;min-height:54px;flex:1">Скачать Excel</button>
+        <button class="btn" id="logoutBtn">Выйти</button>
+      </div>
+    </div>
+    <p class="warn" id="tabelErr"></p>
+  </section>
+</main>
+
+<div class="bar" id="bar"><div class="wrap">
+  <button class="btn" id="copyBtn">Копировать</button>
+  <a class="send off" id="send" href="#" target="_blank" rel="noopener">Отправить в WhatsApp <span class="cnt" id="cnt">0</span></a>
+</div></div>
+
+<script>
+{
+// Вставь сюда адрес веб-приложения Google Apps Script (см. README):
+const API = "";
+const POINTS = ["Love Food — Almaty Mall", "Bon Jour — Almaty Mall", "FixBite — Asia Park"];
+const UNITS = ["кг", "шт", "уп", "л", "бан"];
+const CATS = [
+  ["Мясо / птица / полуфабрикаты", [["Куриное филе (грудка)","кг"],["Говядина / фарш говяжий","кг"],["Мясо (разбиф)","кг"],["Крылышки","кг"],["Наггетсы (6 шт)","уп"],["Стрипсы","кг"],["Сосиски (хот-дог)","шт"]]],
+  ["Сыры / молочное", [["Моцарелла","кг"],["Пармезан","кг"],["Творожный сыр","кг"],["Чеддер слайсы","уп"]]],
+  ["Роллы / рис / нори", [["Рис для суши","кг"],["Нори","уп"],["Лосось (сёмга)","кг"],["Угорь","кг"],["Креветки","кг"],["Тобико (икра)","кг"]]],
+  ["Овощи / соусы / бакалея", [["Булочки (бургер)","шт"],["Мука","кг"],["Картофель (фри)","кг"],["Огурцы","кг"],["Помидоры","кг"],["Айсберг","шт"],["Халапеньо","бан"],["Кетчуп / майонез","уп"],["Терияки / спайси","уп"],["Васаби / имбирь","уп"]]],
+  ["Напитки / упаковка", [["Кола 0,5 л","шт"],["Кола 1 л","шт"],["Кола 2 л","шт"],["Соки (манго / гранат)","шт"],["Коробки пицца 32 см","шт"],["Упаковка суши","шт"],["Пакеты фри","шт"]]]
+];
+const KEY = "lovefood-v1";
+const blank = () => ({on:false, q:""});
+let S;
+try { S = JSON.parse(localStorage.getItem(KEY)); } catch(e) {}
+if (!S || !Array.isArray(S.items)) S = {
+  point:"", mode:"buy", who:"", edit:false,
+  items: CATS.flatMap(([c, list]) => list.map(([n, u]) => ({c, n, u, buy:blank(), left:blank()})))
+};
+S.edit = false;
+if (!POINTS.includes(S.point)) S.point = "";
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cats = () => [...new Set([...CATS.map(c => c[0]), ...S.items.map(i => i.c)])];
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} };
+const today = () => new Date().toLocaleDateString("ru-RU", {day:"numeric", month:"long"});
+const now = () => new Date().toLocaleTimeString("ru-RU", {hour:"2-digit", minute:"2-digit"});
+const wa = t => "https://wa.me/?text=" + encodeURIComponent(t);
+
+function renderTop(){
+  $("points").innerHTML = POINTS.map(p => `<button data-p="${esc(p)}" class="${S.point === p ? "on" : ""}"><b>${esc(p.split(" — ")[0])}</b><small>${esc(p.split(" — ")[1])}</small></button>`).join("");
+  document.querySelectorAll("#modes button").forEach(b => b.classList.toggle("on", b.dataset.m === S.mode));
+  const isList = S.mode === "buy" || S.mode === "left";
+  $("listView").classList.toggle("hide", !isList);
+  $("shiftView").classList.toggle("hide", S.mode !== "shift");
+  $("tabelView").classList.toggle("hide", S.mode !== "tabel");
+  $("bar").classList.toggle("hide", !isList);
+  $("noPoint").classList.toggle("hide", !!S.point || S.mode === "tabel");
+  $("hint").textContent = S.mode === "buy"
+    ? "Отметь, что нужно купить. Плюсом или цифрой укажи, сколько."
+    : "Вечером: укажи, сколько осталось. Если закончилось — поставь галочку с нулём.";
+}
+
+function renderList(){
+  const k = S.mode === "left" ? "left" : "buy";
+  $("list").innerHTML = cats().map(c => {
+    const rows = S.items.map((it, i) => ({it, i})).filter(x => x.it.c === c);
+    if (!rows.length) return "";
+    const n = rows.filter(x => x.it[k].on).length;
+    return `<h2>${esc(c)} <small>${n || ""}</small></h2>` + rows.map(({it, i}) => `
+      <div class="row ${it[k].on ? "on" : ""}">
+        <label class="nm"><input type="checkbox" data-i="${i}" ${it[k].on ? "checked" : ""}><span>${esc(it.n)}</span></label>
+        <div class="ctl">
+          <button data-a="-" data-i="${i}" aria-label="Меньше">−</button>
+          <input class="q" data-i="${i}" inputmode="decimal" value="${esc(it[k].q)}" placeholder="0" aria-label="Количество ${esc(it.n)}">
+          <button data-a="+" data-i="${i}" aria-label="Больше">+</button>
+          <select data-i="${i}" aria-label="Единица">${UNITS.map(u => `<option ${u === it.u ? "selected" : ""}>${u}</option>`).join("")}</select>
+          ${S.edit ? `<button class="del" data-a="x" data-i="${i}" aria-label="Удалить ${esc(it.n)}">×</button>` : ""}
+        </div>
+      </div>`).join("");
+  }).join("");
+  $("newCat").innerHTML = cats().map(c => `<option>${esc(c)}</option>`).join("");
+  $("editBox").classList.toggle("hide", !S.edit);
+  $("editBtn").textContent = S.edit ? "Готово" : "Изменить список";
+  update();
+}
+
+function message(){
+  const left = S.mode === "left", k = left ? "left" : "buy";
+  const parts = cats().map(c => {
+    const picked = S.items.filter(i => i.c === c && i[k].on);
+    if (!picked.length) return "";
+    return "*" + c + "*\n" + picked.map(i => {
+      const q = i[k].q;
+      if (left) { const zero = !q || parseFloat(q.replace(",", ".")) === 0; return (zero ? "❗ " : "▫️ ") + i.n + " — " + (zero ? "0" : q) + " " + i.u; }
+      return "▫️ " + i.n + (q ? " — " + q + " " + i.u : "");
+    }).join("\n");
+  }).filter(Boolean);
+  if (!parts.length) return "";
+  return (left ? "📦 *Остатки" : "🛒 *Закуп") + " — " + (S.point || "точка не выбрана") + ", " + today() + "*\n\n" + parts.join("\n\n");
+}
+
+function update(){
+  const k = S.mode === "left" ? "left" : "buy";
+  const n = S.items.filter(i => i[k].on).length;
+  const msg = message();
+  const ok = n && S.point;
+  $("cnt").textContent = n;
+  $("send").classList.toggle("off", !ok);
+  $("send").href = ok ? wa(msg) : "#";
+  $("prev").innerHTML = n ? "<b>Так увидят в группе:</b>" + esc(msg).replace(/\*/g, "") : '<span class="mute">Отметь продукты — здесь появится готовое сообщение.</span>';
+  save();
+}
+
+function updateShift(){
+  $("clock").textContent = now();
+  const ok = S.point && S.who.trim();
+  const base = name => (txt) => txt + ": " + name + "\nТочка: " + S.point + "\nВремя: " + now() + ", " + new Date().toLocaleDateString("ru-RU");
+  const b = base(S.who.trim());
+  $("inBtn").href = ok ? wa(b("✅ *Пришёл на смену*")) : "#";
+  $("outBtn").href = ok ? wa(b("🏁 *Ушёл со смены*")) : "#";
+  $("inBtn").classList.toggle("off", !ok);
+  $("outBtn").classList.toggle("off", !ok);
+}
+
+function setQty(i, q){
+  const k = S.mode === "left" ? "left" : "buy", it = S.items[i];
+  it[k].q = q;
+  if (q !== "" && !(k === "buy" && parseFloat(q) === 0)) it[k].on = true;
+  if (k === "buy" && (q === "" || parseFloat(q) === 0)) { it[k].q = ""; }
+}
+
+$("points").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.point = b.dataset.p; renderTop(); update(); updateShift(); });
+$("modes").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.mode = b.dataset.m; renderTop(); if (S.mode === "buy" || S.mode === "left") renderList(); else if (S.mode === "shift") updateShift(); else openTabel(); save(); });
+
+$("list").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  const i = +b.dataset.i, k = S.mode === "left" ? "left" : "buy", it = S.items[i];
+  if (b.dataset.a === "x") { S.items.splice(i, 1); renderList(); return; }
+  const cur = parseFloat((it[k].q || "0").replace(",", ".")) || 0;
+  const next = b.dataset.a === "+" ? cur + 1 : Math.max(0, cur - 1);
+  if (k === "buy" && next === 0) { it[k].q = ""; it[k].on = false; }
+  else { it[k].q = String(next); it[k].on = true; }
+  renderList();
+});
+$("list").addEventListener("change", e => {
+  const t = e.target, i = +t.dataset.i, k = S.mode === "left" ? "left" : "buy";
+  if (t.type === "checkbox") { S.items[i][k].on = t.checked; if (!t.checked && k === "buy") S.items[i][k].q = ""; renderList(); }
+  else if (t.tagName === "SELECT") { S.items[i].u = t.value; update(); }
+  else if (t.classList.contains("q")) { setQty(i, t.value.trim()); renderList(); }
+});
+
+$("clearBtn").addEventListener("click", () => { const k = S.mode === "left" ? "left" : "buy"; S.items.forEach(i => i[k] = blank()); renderList(); });
+$("editBtn").addEventListener("click", () => { S.edit = !S.edit; renderList(); });
+function add(){ const n = $("newName").value.trim(); if (!n) return; S.items.push({c:$("newCat").value, n, u:"шт", buy:blank(), left:blank()}); $("newName").value = ""; renderList(); }
+$("addBtn").addEventListener("click", add);
+$("newName").addEventListener("keydown", e => { if (e.key === "Enter") add(); });
+
+$("copyBtn").addEventListener("click", async e => {
+  const b = e.currentTarget;
+  try { await navigator.clipboard.writeText(message()); b.textContent = "Скопировано"; } catch(err) { b.textContent = "Не вышло"; }
+  setTimeout(() => b.textContent = "Копировать", 1500);
+});
+
+$("who").value = S.who || "";
+$("who").addEventListener("input", e => { S.who = e.target.value; save(); updateShift(); });
+["inBtn", "outBtn"].forEach(id => $(id).addEventListener("pointerdown", updateShift));
+const tick = setInterval(updateShift, 15000);
+
+/* ---- связь с Google Таблицей ---- */
+function post(data){
+  if (!API) return false;
+  const body = JSON.stringify(data);
+  try { if (navigator.sendBeacon && navigator.sendBeacon(API, new Blob([body], {type:"text/plain"}))) return true; } catch(e) {}
+  try { fetch(API, {method:"POST", body, mode:"no-cors", keepalive:true}); return true; } catch(e) { return false; }
+}
+async function ask(data){
+  const r = await fetch(API, {method:"POST", body:JSON.stringify(data)});
+  return r.json();
+}
+["inBtn", "outBtn"].forEach(id => $(id).addEventListener("click", () => {
+  if (!S.point || !S.who.trim()) return;
+  const ok = post({action:"mark", type: id === "inBtn" ? "in" : "out", name:S.who.trim(), point:S.point});
+  $("markStatus").textContent = ok ? "✓ Отметка записана в табель (" + now() + ")" : "";
+}));
+$("send").addEventListener("click", () => { post({action:"list", mode:S.mode, point:S.point, text:message()}); });
+
+/* ---- табель ---- */
+const nf = n => Math.round(n).toLocaleString("ru-RU");
+const hfmt = h => { const m = Math.round(h * 60); return Math.floor(m / 60) + " ч" + (m % 60 ? " " + (m % 60) + " мин" : ""); };
+const monthName = m => { const [y, mo] = m.split("-"); const t = new Date(+y, +mo - 1, 1).toLocaleDateString("ru-RU", {month:"long", year:"numeric"}); return t.charAt(0).toUpperCase() + t.slice(1); };
+let T = null;
+
+function openTabel(){
+  $("tabelErr").textContent = "";
+  if (!API) { $("tabelErr").textContent = "Табель ещё не подключён к Google Таблице."; return; }
+  if (S.pin) loadTabel(); else { $("pinBox").classList.remove("hide"); $("tabelBox").classList.add("hide"); }
+}
+async function loadTabel(month){
+  $("tabelErr").textContent = "";
+  $("tabelOut").innerHTML = '<p class="mute">Загружаю…</p>';
+  $("pinBox").classList.add("hide"); $("tabelBox").classList.remove("hide");
+  try {
+    const r = await ask({action:"tabel", pin:S.pin, month: month || ""});
+    if (!r.ok) {
+      if (r.err === "Неверный PIN") { S.pin = ""; save(); $("pinBox").classList.remove("hide"); $("tabelBox").classList.add("hide"); }
+      $("tabelErr").textContent = r.err || "Ошибка"; return;
+    }
+    T = r; renderTabel();
+  } catch(e) { $("tabelOut").innerHTML = ""; $("tabelErr").textContent = "Нет связи с таблицей. Проверь интернет и нажми «Обновить»."; }
+}
+function renderTabel(){
+  const months = Array.from(new Set([T.month].concat(T.months))).sort().reverse();
+  $("month").innerHTML = months.map(m => `<option value="${m}" ${m === T.month ? "selected" : ""}>${monthName(m)}</option>`).join("");
+  const rows = T.rows;
+  const tot = rows.reduce((a, r) => ({h:a.h + r.hours, s:a.s + r.sum, c:a.c + r.shifts}), {h:0, s:0, c:0});
+  const byPoint = {};
+  rows.forEach(r => { const p = byPoint[r.point] = byPoint[r.point] || {h:0, s:0}; p.h += r.hours; p.s += r.sum; });
+  let html = `<div class="sumbox">
+    <div><b>${nf(tot.s)} ₸</b><span>К оплате за ${monthName(T.month).toLowerCase()}</span></div>
+    <div><b>${hfmt(tot.h)}</b><span>Всего часов, ${tot.c} смен</span></div>
+  </div>`;
+  if (!rows.length) html += '<p class="mute" style="margin-top:14px">За этот месяц завершённых смен нет.</p>';
+  else html += `<div class="scroll"><table class="tbl"><thead><tr><th>Сотрудник</th><th>Точка</th><th class="n">Смен</th><th class="n">Часы</th><th class="n">Ставка ₸/ч</th><th class="n">К оплате</th></tr></thead><tbody>
+    ${rows.map((r, i) => `<tr><td>${esc(r.name)}</td><td>${esc(r.point.split(" — ")[0])}</td><td class="n">${r.shifts}</td><td class="n">${hfmt(r.hours)}</td><td class="n"><input data-r="${i}" inputmode="numeric" value="${r.rate || ""}" placeholder="0"></td><td class="n">${nf(r.sum)} ₸</td></tr>`).join("")}
+    ${Object.keys(byPoint).map(p => `<tr><td colspan="3" class="mute">Итого ${esc(p.split(" — ")[0])}</td><td class="n mute">${hfmt(byPoint[p].h)}</td><td></td><td class="n mute">${nf(byPoint[p].s)} ₸</td></tr>`).join("")}
+    <tr class="tot"><td colspan="3">Итого</td><td class="n">${hfmt(tot.h)}</td><td></td><td class="n">${nf(tot.s)} ₸</td></tr>
+  </tbody></table></div>`;
+  if (T.problems.length) html += `<div class="prob"><b>Проверь вручную (${T.problems.length}):</b><br>${T.problems.map(p => `${p.date} ${p.time} — ${esc(p.name)}, ${esc(p.point.split(" — ")[0])}: ${esc(p.issue)}`).join("<br>")}<br><span class="mute">Эти дни не попали в часы.</span></div>`;
+  if (T.shifts.length) html += `<details><summary>Все смены по дням (${T.shifts.length})</summary><div class="scroll"><table class="tbl"><thead><tr><th>Дата</th><th>Сотрудник</th><th>Точка</th><th class="n">Приход</th><th class="n">Уход</th><th class="n">Часы</th></tr></thead><tbody>${T.shifts.map(s => `<tr><td>${s.date}</td><td>${esc(s.name)}</td><td>${esc(s.point.split(" — ")[0])}</td><td class="n">${s.from}</td><td class="n">${s.to}</td><td class="n">${hfmt(s.hours)}</td></tr>`).join("")}</tbody></table></div></details>`;
+  $("tabelOut").innerHTML = html;
+}
+$("pinBtn").addEventListener("click", () => { const v = $("pin").value.trim(); if (!v) return; S.pin = v; save(); $("pin").value = ""; loadTabel(); });
+$("pin").addEventListener("keydown", e => { if (e.key === "Enter") $("pinBtn").click(); });
+$("month").addEventListener("change", e => loadTabel(e.target.value));
+$("reloadBtn").addEventListener("click", () => loadTabel(T && T.month));
+$("logoutBtn").addEventListener("click", () => { S.pin = ""; save(); T = null; openTabel(); });
+$("tabelOut").addEventListener("change", async e => {
+  const t = e.target; if (!t.dataset.r) return;
+  const r = T.rows[+t.dataset.r], rate = parseFloat(t.value.replace(",", ".")) || 0;
+  try { const res = await ask({action:"setRate", pin:S.pin, name:r.name, rate}); if (res.ok) loadTabel(T.month); else $("tabelErr").textContent = res.err; }
+  catch(err) { $("tabelErr").textContent = "Ставка не сохранилась, нет связи."; }
+});
+$("csvBtn").addEventListener("click", () => {
+  if (!T) return;
+  const q = v => '"' + String(v).replace(/"/g, '""') + '"';
+  const lines = [["Табель", monthName(T.month)], [], ["Сотрудник", "Точка", "Смен", "Часы", "Ставка ₸/ч", "К оплате ₸"]];
+  T.rows.forEach(r => lines.push([r.name, r.point, r.shifts, String(r.hours).replace(".", ","), r.rate, r.sum]));
+  const tot = T.rows.reduce((a, r) => ({h:a.h + r.hours, s:a.s + r.sum}), {h:0, s:0});
+  lines.push(["Итого", "", "", String(Math.round(tot.h * 100) / 100).replace(".", ","), "", tot.s]);
+  lines.push([], ["Смены по дням"], ["Дата", "Сотрудник", "Точка", "Приход", "Уход", "Часы"]);
+  T.shifts.forEach(s => lines.push([s.date, s.name, s.point, s.from, s.to, String(s.hours).replace(".", ",")]));
+  if (T.problems.length) { lines.push([], ["Проверить вручную"]); T.problems.forEach(p => lines.push([p.date, p.name, p.point, p.time, p.issue])); }
+  const csv = "\ufeff" + lines.map(l => l.map(q).join(";")).join("\r\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([csv], {type:"text/csv;charset=utf-8"}));
+  a.download = "Табель_" + T.month + ".csv";
+  document.body.appendChild(a); a.click(); a.remove();
+});
+if (S.mode === "tabel") openTabel();
+
+renderTop();
+renderList();
+updateShift();
+}
+</script>
+</body>
+</html>
