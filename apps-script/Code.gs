@@ -1,14 +1,27 @@
 /**
  * Связка сайта «Закуп и смены» с Google Таблицей.
- * Вставьте этот код в Расширения → Apps Script и опубликуйте как веб-приложение.
+ * Вставьте этот код в новый проект на script.google.com и опубликуйте как веб-приложение.
  * Листы создаются сами при первом запросе (или запустите функцию setup вручную).
  */
 
 const TZ = "Asia/Almaty";
 const MAX_SHIFT_HOURS = 20; // если «Ушёл» позже — считаем, что уход забыли отметить
 
+// Таблица создаётся сама (лист «Смены и закуп» в твоём Google Диске)
+function book_() {
+  const props = PropertiesService.getScriptProperties();
+  const id = props.getProperty("SHEET_ID");
+  if (id) return SpreadsheetApp.openById(id);
+  let ss = null;
+  try { ss = SpreadsheetApp.getActive(); } catch (e) {}
+  if (!ss) ss = SpreadsheetApp.create("Смены и закуп");
+  props.setProperty("SHEET_ID", ss.getId());
+  return ss;
+}
+
 function setup() {
-  const ss = SpreadsheetApp.getActive();
+  const ss = book_();
+  Logger.log("Таблица: " + ss.getUrl());
   sheet_(ss, "Отметки", ["Дата и время", "Отметка", "Имя", "Точка"]);
   sheet_(ss, "Списки", ["Дата и время", "Тип", "Точка", "Текст"]);
   sheet_(ss, "Ставки", ["Имя", "Ставка ₸/час"]);
@@ -35,7 +48,7 @@ function doPost(e) {
   try {
     setup();
     const d = JSON.parse((e && e.postData && e.postData.contents) || "{}");
-    const ss = SpreadsheetApp.getActive();
+    const ss = book_();
     const now = new Date();
 
     if (d.action === "mark") {
