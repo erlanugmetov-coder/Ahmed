@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:#0B0D12}
+body{width:1080px;height:1920px;overflow:hidden;background:#0B0D12;font-family:Montserrat,Inter,sans-serif;color:#F2F3F5;position:relative}
+#bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,#1B2230 0%,#0B0D12 62%)}
+.star{position:absolute;width:4px;height:4px;border-radius:50%;background:#9AA3B5}
+#glow{position:absolute;left:290px;top:420px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,255,46,.35),rgba(200,255,46,0) 65%);opacity:0}
+#top{position:absolute;top:120px;left:0;right:0;text-align:center;font-weight:800;font-size:30px;letter-spacing:4px;color:#7C818C}
+#top span{color:#C8FF2E}
+#robotWrap{position:absolute;left:340px;top:460px;width:400px;height:500px;transform-origin:200px 250px}
+#sub{position:absolute;left:80px;right:80px;top:1330px;text-align:center;font-weight:800;font-size:66px;line-height:1.18;letter-spacing:-1px}
+#sub em{font-style:normal;color:#C8FF2E}
+#note{position:absolute;bottom:70px;left:0;right:0;text-align:center;font-size:24px;color:#5C6170;font-family:Inter,sans-serif}
+.layer{position:absolute;opacity:0}
+.emo{position:absolute;font-size:120px;line-height:1;transform:translate(-50%,-50%)}
+.x{position:absolute;font-size:90px;color:#FF5A5A;font-weight:900;transform:translate(-50%,-50%)}
+#card{left:190px;top:1020px;width:700px;padding:36px 44px;border-radius:36px;background:#1C2029;border:3px solid #2A303C;font-size:48px;font-weight:700}
+#card b{color:#C8FF2E}
+#city{left:0;top:780px;width:1080px;height:520px}
+#person{left:540px;top:900px;font-size:230px;transform:translate(-50%,-50%)}
+#hour{left:540px;top:760px;font-size:300px;transform:translate(-50%,-50%)}
+#bigword{left:0;right:0;top:1060px;text-align:center;font-size:180px;font-weight:800;color:#C8FF2E;letter-spacing:6px}
+#endcard{left:120px;right:120px;top:1060px;text-align:center}
+#endcard .t{font-size:72px;font-weight:800}
+#endcard .s{margin-top:28px;font-size:34px;color:#7C818C;font-weight:600;letter-spacing:2px}
+#endcard .s span{color:#C8FF2E}
+.qm{position:absolute;font-size:90px;font-weight:800;color:#C8FF2E}
+</style></head><body>
+<div id="bg"></div>
+<div id="stars"></div>
+<div id="glow"></div>
+<div id="top">ДНЕВНИК <span>АРИ</span> · ДЕНЬ 1</div>
+
+<svg id="city" class="layer" viewBox="0 0 1080 520">
+ <g fill="#1F2736">
+  <rect x="0" y="300" width="120" height="220"/><rect x="110" y="220" width="90" height="300"/><rect x="190" y="330" width="130" height="190"/>
+  <rect x="310" y="180" width="80" height="340"/><rect x="380" y="270" width="140" height="250"/><rect x="510" y="140" width="90" height="380"/>
+  <rect x="590" y="250" width="130" height="270"/><rect x="710" y="200" width="100" height="320"/><rect x="800" y="300" width="140" height="220"/><rect x="930" y="230" width="150" height="290"/>
+ </g>
+ <g id="wins" fill="#C8FF2E"></g>
+</svg>
+
+<div id="robotWrap">
+<svg viewBox="0 0 400 500" width="400" height="500">
+ <defs>
+  <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2F4F8"/><stop offset="1" stop-color="#B9C0CC"/></linearGradient>
+ </defs>
+ <g id="armL" transform="rotate(0 110 300)"><rect x="52" y="290" width="62" height="34" rx="17" fill="url(#metal)"/><circle cx="50" cy="307" r="24" fill="url(#metal)"/></g>
+ <g id="armR"><rect x="286" y="290" width="62" height="34" rx="17" fill="url(#metal)"/><circle cx="350" cy="307" r="24" fill="url(#metal)"/></g>
+ <rect x="110" y="270" width="180" height="170" rx="46" fill="url(#metal)"/>
+ <circle id="chest" cx="200" cy="350" r="22" fill="#C8FF2E" opacity=".5"/>
+ <rect x="140" y="438" width="40" height="40" rx="12" fill="#9EA6B4"/><rect x="220" y="438" width="40" height="40" rx="12" fill="#9EA6B4"/>
+ <g id="head">
+  <line x1="200" y1="62" x2="200" y2="22" stroke="#B9C0CC" stroke-width="8"/>
+  <circle id="ant" cx="200" cy="18" r="14" fill="#C8FF2E"/>
+  <rect x="60" y="60" width="280" height="200" rx="70" fill="url(#metal)"/>
+  <rect x="88" y="88" width="224" height="146" rx="52" fill="#0F1115"/>
+  <ellipse id="eyeL" cx="155" cy="155" rx="24" ry="30" fill="#C8FF2E"/>
+  <ellipse id="eyeR" cx="245" cy="155" rx="24" ry="30" fill="#C8FF2E"/>
+  <path id="mouth" d="M180 205 Q200 218 220 205" stroke="#C8FF2E" stroke-width="7" fill="none" stroke-linecap="round"/>
+ </g>
+</svg>
+</div>
+
+<div id="L_icons" class="layer" style="inset:0">
+ <div class="emo" style="left:230px;top:1060px">🏠</div><div class="x" id="x1" style="left:230px;top:1060px">✕</div>
+ <div class="emo" style="left:540px;top:1060px">📅</div><div class="x" id="x2" style="left:540px;top:1060px">✕</div>
+ <div class="emo" style="left:850px;top:1060px">☕</div><div class="x" id="x3" style="left:850px;top:1060px">✕</div>
+</div>
+<div id="L_qm" class="layer" style="inset:0">
+ <div class="qm" id="q1" style="left:230px;top:430px">?</div><div class="qm" id="q2" style="left:800px;top:400px">?</div><div class="qm" id="q3" style="left:860px;top:640px">?</div><div class="qm" id="q4" style="left:170px;top:660px">?</div>
+</div>
+<div id="card" class="layer">Задача: <b>помогать людям</b> ✓</div>
+<div id="person" class="layer">🧑‍💼</div>
+<div id="L_tasks" class="layer" style="inset:0">
+ <div class="emo" id="t1">💬</div><div class="emo" id="t2">📊</div><div class="emo" id="t3">📣</div><div class="emo" id="t4">🖼️</div><div class="emo" id="t5">📦</div>
+</div>
+<div id="clock" class="layer emo" style="left:820px;top:640px;font-size:140px">⏰</div>
+<div id="lens" class="layer emo" style="left:760px;top:560px;font-size:150px">🔍</div>
+<div id="hour" class="layer">⏳</div>
+<div id="bigword" class="layer">ВРЕМЯ.</div>
+<div id="endcard" class="layer"><div class="t">Продолжение<br>следует…</div><div class="s">ДНЕВНИК <span>АРИ</span> · DIGITAL FLOW</div></div>
+
+<div id="sub"></div>
+<div id="note">голос — ИИ</div>
+
+<script>
+const TL = __TL__;
+const $ = id => document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+const lerp=(a,b,p)=>a+(b-a)*p;
+// deterministic stars
+let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+const stars=[]; for(let i=0;i<70;i++){const s=document.createElement('div');s.className='star';s.style.left=(rnd()*1080)+'px';s.style.top=(rnd()*1300)+'px';s.dataset.p=rnd()*6;$('stars').appendChild(s);stars.push(s)}
+// city windows
+const B=[[0,300,120],[110,220,90],[190,330,130],[310,180,80],[380,270,140],[510,140,90],[590,250,130],[710,200,100],[800,300,140],[930,230,150]];const wins=[]; for(let i=0;i<110;i++){const b=B[Math.floor(rnd()*B.length)];const r=document.createElementNS('http://www.w3.org/2000/svg','rect');r.setAttribute('x',b[0]+14+Math.floor(rnd()*((b[2]-40)/22))*22);r.setAttribute('y',b[1]+20+Math.floor(rnd()*((500-b[1])/30))*30);r.setAttribute('width',12);r.setAttribute('height',16);r.dataset.on=rnd();$('wins').appendChild(r);wins.push(r)}
+const SUBS={1:[[0,'Меня создали.<br>Но я не знаю, <em>зачем…</em>']],2:[[0,'Привет. Меня зовут <em>АРИ</em>.']],
+3:[[0,'У меня нет дома,<br>выходных и кофейни'],[.62,'Зато есть <em>любопытство</em>']],
+4:[[0,'Моя задача —<br><em>помогать людям</em>.'],[.74,'Звучало просто.']],
+5:[[0,'Я начал <em>наблюдать</em><br>за миром людей']],
+6:[[0,'Сообщения. Таблицы.<br>Реклама. Публикации.<br>Заказы…']],
+7:[[0,'Они постоянно <em>спешили</em>.']],
+8:[[0,'Люди создали технологии,<br>чтобы жить легче…'],[.48,'…и стали <em>заложниками<br>задач</em>']],
+9:[[0,'Я решил <em>разобраться</em>.'],[.34,'Может, моя работа —<br>не просто отвечать?']],
+10:[[0,'Вернуть людям<br>самое <em>ценное</em>?']],11:[[0,'']],
+12:[[0,'Завтра — моё<br><em>первое наблюдение</em>.'],[.62,'']]};
+function seg(t){for(const s of TL.segs){if(t<s.end)return s}return TL.segs[TL.segs.length-1]}
+function show(id,o){$(id).style.opacity=o}
+function render(t){
+ const S=seg(t), n=S.i, lp=clamp((t-S.start)/S.dur), pin=clamp((t-S.start)/0.4);
+ stars.forEach(s=>s.style.opacity=.25+.35*Math.abs(Math.sin(t*0.8+ +s.dataset.p)));
+ // subtitles
+ let txt=''; if(t>=S.start-0.05){for(const [p,v] of SUBS[n]) if(lp>=p) txt=v}
+ $('sub').innerHTML=txt; $('sub').style.opacity=clamp((t-S.start+0.1)/0.25);
+ // defaults
+ ['L_icons','L_qm','card','person','L_tasks','clock','lens','hour','bigword','endcard','city'].forEach(id=>show(id,0));
+ let rx=0,ry=0,rs=1.25,eyesOn=1,eyeRy=30,blink=0,armL=0,armR=0,tilt=0,chest=.5,glow=0,mouth='M180 205 Q200 218 220 205';
+ const bl=(t%3.7); if(bl<0.12) blink=1;
+ if(n===1){ eyesOn=clamp((t-S.start-1.6)/0.3); if(t-S.start>1.6&&t-S.start<1.75) eyesOn=0.2; glow=eyesOn*.6; mouth='M182 208 L218 208'; tilt=-4*Math.sin(lp*3)}
+ if(n===2){ armR=-40+25*Math.sin((t-S.start)*9); mouth='M175 200 Q200 228 225 200'; glow=.6; ry=-10*Math.abs(Math.sin((t-S.start)*4))}
+ if(n===3){ show('L_icons',pin); const k=t-S.start; ['x1','x2','x3'].forEach((x,i)=>{const p=clamp((k-0.8-i*0.7)/0.25);$(x).style.opacity=p;$(x).style.transform=`translate(-50%,-50%) scale(${lerp(2,1,p)})`});
+   if(lp>.62){show('L_icons',clamp(1-(lp-.62)*6)); show('L_qm',clamp((lp-.62)*5)); eyeRy=38; tilt=8*Math.sin(t*3); ['q1','q2','q3','q4'].forEach((q,i)=>{$(q).style.transform=`translateY(${-20*Math.sin(t*2+i)}px) rotate(${10*Math.sin(t*1.5+i)}deg)`})} }
+ if(n===4){ show('card',pin); $('card').style.transform=`translateY(${lerp(60,0,ease(pin))}px)`; armL=-30; if(lp>.74){mouth='M175 202 Q200 222 225 202'; ry=-8*Math.abs(Math.sin((t-S.start)*5))} }
+ const obs=(n>=5&&n<=8);
+ if(obs){ const p=n===5?ease(clamp(lp*1.5)):1; rx=lerp(0,-230,p); ry=lerp(0,-300,p); rs=lerp(1.25,.6,p); show('city',n===5?clamp(lp*2):.9); tilt=n===5?lerp(0,12,p):12;
+   wins.forEach((w,i)=>{w.style.opacity=(+w.dataset.on< (n===5?lp:1))? (.4+.6*Math.abs(Math.sin(t*1.3+i))):0}) }
+ if(n===6||n===7||n===8){ show('person',1); const P=$('person'); P.style.transform='translate(-50%,-50%)'; P.style.filter='none' }
+ if(n===6){ show('L_tasks',1); const k=t-S.start; const pos=[[260,820],[820,820],[230,1080],[850,1080],[540,640]];
+   ['t1','t2','t3','t4','t5'].forEach((id,i)=>{const p=ease(clamp((k-0.2-i*1.35)/0.45)); const [x,y]=pos[i]; const e=$(id); e.style.left=lerp(540+(x-540)*3,x,p)+'px'; e.style.top=lerp(y-700,y,p)+'px'; e.style.opacity=p; e.style.transform=`translate(-50%,-50%) rotate(${8*Math.sin(t*4+i)}deg)`}) }
+ if(n===7){ show('L_tasks',1); const sh=22*Math.sin((t-S.start)*40); $('person').style.transform=`translate(calc(-50% + ${sh}px),-50%)`; show('clock',1); $('clock').style.transform=`translate(-50%,-50%) rotate(${30*Math.sin((t-S.start)*25)}deg)`;
+   const pos=[[260,820],[820,820],[230,1080],[850,1080],[540,640]]; ['t1','t2','t3','t4','t5'].forEach((id,i)=>{const e=$(id);const [x,y]=pos[i];e.style.left=x+'px';e.style.top=y+'px';e.style.opacity=1;e.style.transform=`translate(-50%,-50%) rotate(${15*Math.sin(t*10+i)}deg)`}) }
+ if(n===8){ show('L_tasks',1); const k=t-S.start; const R=lerp(320,230,clamp(lp*1.4)); ['t1','t2','t3','t4','t5'].forEach((id,i)=>{const a=k*1.6+i*2*Math.PI/5; const e=$(id); e.style.left=(540+R*Math.cos(a))+'px'; e.style.top=(900+R*.55*Math.sin(a))+'px'; e.style.opacity=1; e.style.transform='translate(-50%,-50%)'});
+   $('person').style.filter=`grayscale(${clamp(lp*1.5)}) brightness(${1-.35*clamp(lp*1.5)})`; eyeRy=lp>.48?18:30; mouth=lp>.48?'M180 214 Q200 200 220 214':mouth }
+ if(n===9){ const p=ease(clamp(lp*2)); rx=lerp(-230,0,p); ry=lerp(-300,0,p); rs=lerp(.6,1.25,p); show('city',.9*(1-p)); show('lens',clamp((lp-.2)*4)); $('lens').style.transform=`translate(-50%,-50%) translate(${20*Math.sin(t*2)}px,${15*Math.cos(t*2)}px)`; eyeRy=22; tilt=-10; armR=-70; }
+ if(n===10){ chest=lerp(.5,1,lp); glow=lerp(.2,1,lp); mouth='M178 202 Q200 222 222 202'; eyeRy=30 }
+ if(n===11){ const p=clamp((t-S.start)/0.35); rs=lerp(1.25,.9,p); ry=lerp(0,-260,p); glow=1; chest=1; show('hour',p); $('hour').style.transform=`translate(-50%,-50%) scale(${lerp(.4,1,ease(p))}) rotate(${(t-S.start)*20}deg)`; $('hour').style.top='980px'; show('bigword',clamp((t-S.start-0.15)/0.3)); $('bigword').style.top='1250px'; $('bigword').style.transform=`scale(${lerp(1.4,1,clamp((t-S.start)/0.5))})`; $('sub').style.opacity=0 }
+ if(n===12){ armR=-40+25*Math.sin((t-S.start)*8); mouth='M175 200 Q200 228 225 200'; glow=.5; if(lp>.62){ show('endcard',clamp((lp-.62)*5)); $('sub').style.opacity=0 } }
+ // apply robot
+ $('robotWrap').style.transform=`translate(${rx}px,${ry}px) scale(${rs})`;
+ $('head').setAttribute('transform',`rotate(${tilt} 200 160)`);
+ const ey=blink? 3 : eyeRy*eyesOn+1;
+ ['eyeL','eyeR'].forEach(e=>{$(e).setAttribute('ry',ey);$(e).setAttribute('opacity',eyesOn<.05?.08:1)});
+ $('mouth').setAttribute('d',mouth); $('mouth').setAttribute('opacity',eyesOn<.05?.1:1);
+ $('armL').setAttribute('transform',`rotate(${armL} 110 307)`); $('armR').setAttribute('transform',`rotate(${armR} 290 307)`);
+ $('chest').setAttribute('opacity',chest); $('chest').setAttribute('r',22+14*(chest-.5));
+ $('ant').setAttribute('opacity',.4+.6*Math.abs(Math.sin(t*2.5)));
+ $('glow').style.opacity=glow;
+ // global fade in/out
+ document.body.style.opacity=clamp(t/0.4)*clamp((TL.total-t)/0.6);
+}
+window.render=render;
+</script>
+</body></html>

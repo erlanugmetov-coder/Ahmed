@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:#0B0D12}
+body{width:1080px;height:1920px;overflow:hidden;background:#0B0D12;font-family:Montserrat,Inter,sans-serif;color:#F2F3F5;position:relative}
+#bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,#1B2230 0%,#0B0D12 62%)}
+.star{position:absolute;width:4px;height:4px;border-radius:50%;background:#9AA3B5}
+#glow{position:absolute;left:290px;top:420px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,255,46,.35),rgba(200,255,46,0) 65%);opacity:0}
+#top{position:absolute;top:120px;left:0;right:0;text-align:center;font-weight:800;font-size:30px;letter-spacing:4px;color:#7C818C}
+#top span{color:#C8FF2E}
+#robotWrap{position:absolute;left:340px;top:460px;width:400px;height:500px;transform-origin:200px 250px}
+#sub{position:absolute;left:80px;right:80px;top:1330px;text-align:center;font-weight:800;font-size:66px;line-height:1.18;letter-spacing:-1px}
+#sub em{font-style:normal;color:#C8FF2E}
+#note{position:absolute;bottom:70px;left:0;right:0;text-align:center;font-size:24px;color:#5C6170;font-family:Inter,sans-serif}
+.layer{position:absolute;opacity:0}
+.emo{position:absolute;font-size:120px;line-height:1;transform:translate(-50%,-50%)}
+.x{position:absolute;font-size:90px;color:#FF5A5A;font-weight:900;transform:translate(-50%,-50%)}
+#card{left:190px;top:1020px;width:700px;padding:36px 44px;border-radius:36px;background:#1C2029;border:3px solid #2A303C;font-size:48px;font-weight:700}
+#card b{color:#C8FF2E}
+#city{left:0;top:780px;width:1080px;height:520px}
+#person{left:540px;top:900px;font-size:230px;transform:translate(-50%,-50%)}
+#hour{left:540px;top:760px;font-size:300px;transform:translate(-50%,-50%)}
+#bigword{left:0;right:0;top:1060px;text-align:center;font-size:180px;font-weight:800;color:#C8FF2E;letter-spacing:6px}
+#endcard{left:120px;right:120px;top:1060px;text-align:center}
+#endcard .t{font-size:72px;font-weight:800}
+#endcard .s{margin-top:28px;font-size:34px;color:#7C818C;font-weight:600;letter-spacing:2px}
+#endcard .s span{color:#C8FF2E}
+.qm{position:absolute;font-size:90px;font-weight:800;color:#C8FF2E}
+</style><style>
+#pc{position:absolute;left:540px;top:1000px;transform:translate(-50%,-50%);opacity:0}
+#pc .man{font-size:200px;text-align:center}
+#laptop{position:absolute;left:540px;top:1010px;width:520px;height:330px;transform:translate(-50%,-50%);border-radius:28px;background:#1C2029;border:6px solid #3A4150;opacity:0}
+#btn{position:absolute;left:50%;top:205px;transform:translate(-50%,-50%);background:#3D7BFF;color:#fff;font-weight:800;font-size:42px;padding:22px 44px;border-radius:18px;white-space:nowrap}
+#acc{position:absolute;left:50%;top:80px;transform:translate(-50%,-50%);font-size:38px;font-weight:700;white-space:nowrap;font-family:Inter,sans-serif}
+#cnt{position:absolute;right:120px;top:780px;font-size:110px;font-weight:800;color:#FF5A5A;opacity:0}
+#sad{position:absolute;left:540px;top:1000px;font-size:220px;transform:translate(-50%,-50%);opacity:0}
+#check{position:absolute;left:540px;top:1020px;transform:translate(-50%,-50%);opacity:0;background:#1C2029;border:4px solid #C8FF2E;border-radius:32px;padding:34px 46px;text-align:center;white-space:nowrap}
+#check .a{font-size:44px;font-weight:800;color:#C8FF2E}
+#check .b{font-size:32px;color:#B5B9C2;margin-top:10px;font-family:Inter,sans-serif}
+.conf{position:absolute;width:18px;height:30px;border-radius:4px;opacity:0}
+#insight{position:absolute;left:100px;right:100px;top:1000px;text-align:center;font-size:64px;font-weight:800;line-height:1.2;opacity:0}
+#insight em{font-style:normal;color:#C8FF2E}
+#warn{position:absolute;left:760px;top:520px;font-size:130px;opacity:0}
+#pen{position:absolute;left:300px;top:560px;font-size:120px;opacity:0}
+</style>
+</head><body>
+<div id="bg"></div>
+<div id="stars"></div>
+<div id="glow"></div>
+<div id="top">ДНЕВНИК <span>АРИ</span> · ДЕНЬ 2</div>
+
+<svg id="city" class="layer" viewBox="0 0 1080 520">
+ <g fill="#1F2736">
+  <rect x="0" y="300" width="120" height="220"/><rect x="110" y="220" width="90" height="300"/><rect x="190" y="330" width="130" height="190"/>
+  <rect x="310" y="180" width="80" height="340"/><rect x="380" y="270" width="140" height="250"/><rect x="510" y="140" width="90" height="380"/>
+  <rect x="590" y="250" width="130" height="270"/><rect x="710" y="200" width="100" height="320"/><rect x="800" y="300" width="140" height="220"/><rect x="930" y="230" width="150" height="290"/>
+ </g>
+ <g id="wins" fill="#C8FF2E"></g>
+</svg>
+
+<div id="robotWrap">
+<svg viewBox="0 0 400 500" width="400" height="500">
+ <defs>
+  <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2F4F8"/><stop offset="1" stop-color="#B9C0CC"/></linearGradient>
+ </defs>
+ <g id="armL" transform="rotate(0 110 300)"><rect x="52" y="290" width="62" height="34" rx="17" fill="url(#metal)"/><circle cx="50" cy="307" r="24" fill="url(#metal)"/></g>
+ <g id="armR"><rect x="286" y="290" width="62" height="34" rx="17" fill="url(#metal)"/><circle cx="350" cy="307" r="24" fill="url(#metal)"/></g>
+ <rect x="110" y="270" width="180" height="170" rx="46" fill="url(#metal)"/>
+ <circle id="chest" cx="200" cy="350" r="22" fill="#C8FF2E" opacity=".5"/>
+ <rect x="140" y="438" width="40" height="40" rx="12" fill="#9EA6B4"/><rect x="220" y="438" width="40" height="40" rx="12" fill="#9EA6B4"/>
+ <g id="head">
+  <line x1="200" y1="62" x2="200" y2="22" stroke="#B9C0CC" stroke-width="8"/>
+  <circle id="ant" cx="200" cy="18" r="14" fill="#C8FF2E"/>
+  <rect x="60" y="60" width="280" height="200" rx="70" fill="url(#metal)"/>
+  <rect x="88" y="88" width="224" height="146" rx="52" fill="#0F1115"/>
+  <ellipse id="eyeL" cx="155" cy="155" rx="24" ry="30" fill="#C8FF2E"/>
+  <ellipse id="eyeR" cx="245" cy="155" rx="24" ry="30" fill="#C8FF2E"/>
+  <path id="mouth" d="M180 205 Q200 218 220 205" stroke="#C8FF2E" stroke-width="7" fill="none" stroke-linecap="round"/>
+ </g>
+</svg>
+</div>
+
+
+<div id="laptop"><div id="acc">digitalflow_kz</div><div id="btn">Разрешить</div></div>
+<div id="cnt">×1</div>
+<div id="sad">😮‍💨</div>
+<div id="check"><div class="a">✓ digitalflowalmaty</div><div class="b">подключено</div></div>
+<div id="confs"></div>
+<div id="insight">Люди сдаются не потому,<br>что <em>сложно</em>.<br>А потому, что <em>устали</em>.</div>
+<div id="pen">✍️</div><div id="warn">⚠️</div>
+<div id="endcard" class="layer"><div class="t">Продолжение<br>следует…</div><div class="s">ДНЕВНИК <span>АРИ</span> · DIGITAL FLOW</div></div>
+<div id="sub"></div>
+<div id="note">голос — ИИ</div>
+
+<script>
+const TL = __TL__;
+const $ = id => document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+const lerp=(a,b,p)=>a+(b-a)*p;
+let seed=11; const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+const stars=[]; for(let i=0;i<70;i++){const s=document.createElement('div');s.className='star';s.style.left=(rnd()*1080)+'px';s.style.top=(rnd()*1300)+'px';s.dataset.p=rnd()*6;$('stars').appendChild(s);stars.push(s)}
+const confs=[]; const cols=['#C8FF2E','#FFFFFF','#7CF','#FFB84D']; for(let i=0;i<40;i++){const c=document.createElement('div');c.className='conf';c.style.background=cols[i%4];c.dataset.x=rnd()*1080;c.dataset.v=300+rnd()*500;c.dataset.r=rnd()*720;c.dataset.d=rnd()*0.6;$('confs').appendChild(c);confs.push(c)}
+const SUBS={1:[[0,'Мой человек <em>трижды</em><br>подключил не тот аккаунт.']],
+2:[[0,'Он жал «Разрешить».<br>Снова и снова…'],[.62,'И каждый раз —<br><em>чужая страница</em>.']],
+3:[[0,'Я видел: он хотел<br><em>всё бросить</em>.']],
+4:[[0,'Но он попробовал<br><em>ещё раз</em>.']],
+5:[[0,'И я впервые увидел<br><em>его страницу</em>.']],
+6:[[0,'']],
+7:[[0,'Завтра — мой <em>первый пост</em>.'],[.5,'И я ошибусь<br><em>в самом важном</em>.']],8:[[0,'']]};
+function seg(t){for(const s of TL.segs){if(t<s.end)return s}return TL.segs[TL.segs.length-1]}
+function render(t){
+ const S=seg(t), n=S.i, lp=clamp((t-S.start)/S.dur), k=t-S.start;
+ stars.forEach(s=>s.style.opacity=.25+.35*Math.abs(Math.sin(t*0.8+ +s.dataset.p)));
+ let txt=''; for(const [p,v] of SUBS[n]) if(lp>=p) txt=v;
+ $('sub').innerHTML=txt; $('sub').style.opacity=clamp((t-S.start+0.1)/0.25);
+ ['laptop','cnt','sad','check','insight','pen','warn','endcard'].forEach(id=>$(id).style.opacity=0); confs.forEach(c=>c.style.opacity=0);
+ let rx=-250,ry=-280,rs=.62,eyeRy=30,blink=(t%3.7)<0.12,armL=0,armR=0,tilt=0,chest=.5,glow=0,mouth='M180 205 Q200 218 220 205';
+ const showLaptop=(n<=2);
+ if(n===1){ const p=ease(clamp(k/0.6)); rs=lerp(1.25,.62,p); rx=lerp(0,-250,p); ry=lerp(0,-280,p); $('laptop').style.opacity=clamp((k-0.3)/0.4); tilt=10; eyeRy=36;
+   $('acc').textContent='digitalflow_kz'; $('acc').style.color='#FF7A7A'; }
+ if(n===2){ $('laptop').style.opacity=1; const clicks=[0.15,0.42,0.68]; let c=0; clicks.forEach(x=>{if(lp>=x)c++});
+   let press=0; clicks.forEach(x=>{const d=lp-x; if(d>=0&&d<0.06) press=1-d/0.06});
+   $('btn').style.transform=`translate(-50%,-50%) scale(${1-0.12*press})`;
+   $('acc').textContent='digitalflow_kz'; $('acc').style.color='#FF7A7A';
+   $('laptop').style.transform=`translate(-50%,-50%) translateX(${press*14*Math.sin(t*60)}px)`;
+   $('cnt').style.opacity=c?1:0; $('cnt').textContent='×'+c; $('cnt').style.transform=`scale(${1+0.3*press})`;
+   tilt=10+6*Math.sin(t*3); eyeRy=lp>.62?20:34; if(lp>.62) mouth='M180 212 Q200 202 220 212'; }
+ if(n===3){ $('sad').style.opacity=clamp(k/0.4); $('sad').style.transform=`translate(-50%,-50%) translateY(${12*Math.sin(t*1.5)}px)`; eyeRy=16; mouth='M180 214 Q200 200 220 214'; tilt=-6; }
+ if(n===4){ $('laptop').style.opacity=1; $('laptop').style.transform='translate(-50%,-50%)'; const p=clamp((lp-.45)/.1); $('btn').style.transform=`translate(-50%,-50%) scale(${1-0.12*(p>0&&p<1?1:0)})`; $('acc').textContent='…'; $('acc').style.color='#B5B9C2'; eyeRy=30; tilt=6; $('cnt').style.opacity=0; }
+ if(n===5){ const p=ease(clamp(k/0.5)); $('check').style.opacity=p; $('check').style.transform=`translate(-50%,-50%) scale(${lerp(.6,1,p)})`;
+   rs=lerp(.62,1,ease(clamp(k/0.8))); rx=lerp(-250,0,ease(clamp(k/0.8))); ry=lerp(-280,-330,ease(clamp(k/0.8)));
+   eyeRy=8; mouth='M172 198 Q200 232 228 198'; armR=-50+30*Math.sin(k*10); armL=50-30*Math.sin(k*10); glow=.7;
+   confs.forEach(c=>{const kk=k-(+c.dataset.d); if(kk>0){c.style.opacity=clamp(1-kk/2.5); c.style.left=c.dataset.x+'px'; c.style.top=(200+(+c.dataset.v)*kk)+'px'; c.style.transform=`rotate(${(+c.dataset.r)*kk}deg)`}}) }
+ if(n===6){ rs=1; rx=0; ry=-330; $('insight').style.opacity=clamp(k/0.5); eyeRy=24; tilt=-8; chest=.8; glow=.35; $('sub').style.opacity=0 }
+ if(n===7){ rs=1.1; rx=0; ry=-200; if(lp<.5){$('pen').style.opacity=clamp(k/0.3); $('pen').style.transform=`rotate(${15*Math.sin(t*8)}deg)`; mouth='M175 202 Q200 222 225 202'; eyeRy=30}
+   else {$('warn').style.opacity=clamp((lp-.5)*6); $('warn').style.transform=`scale(${1+0.1*Math.sin(t*10)})`; eyeRy=40; mouth='M188 210 Q200 204 212 210'; tilt=-8} }
+ if(n===8){ rs=1.1; rx=0; ry=-200; $('endcard').style.opacity=clamp(k/0.4); $('sub').style.opacity=0; armR=-40+25*Math.sin(k*8); mouth='M175 200 Q200 228 225 200' }
+ $('robotWrap').style.transform=`translate(${rx}px,${ry}px) scale(${rs})`;
+ $('head').setAttribute('transform',`rotate(${tilt} 200 160)`);
+ const ey=blink?3:eyeRy; ['eyeL','eyeR'].forEach(e=>{$(e).setAttribute('ry',ey);$(e).setAttribute('opacity',1)});
+ $('mouth').setAttribute('d',mouth);
+ $('armL').setAttribute('transform',`rotate(${armL} 110 307)`); $('armR').setAttribute('transform',`rotate(${armR} 290 307)`);
+ $('chest').setAttribute('opacity',chest); $('ant').setAttribute('opacity',.4+.6*Math.abs(Math.sin(t*2.5)));
+ $('glow').style.opacity=glow; $('glow').style.left=(290+rx)+'px'; $('glow').style.top=(420+ry)+'px';
+ document.body.style.opacity=clamp(t/0.3)*clamp((TL.total-t)/0.5);
+}
+window.render=render;
+</script></body></html>
