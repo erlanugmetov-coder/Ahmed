@@ -171,14 +171,14 @@ const FIXBITE = [
   ["🥤 Напитки", [["🥤 Дизи","шт"],["🥤 Кола 1 л","шт"],["🥤 Кола 0,5 л","шт"],["🧃 Fuse Tea 0,5 л","шт"],["🧃 Fuse Tea 1 л","шт"],["💧 Вода без газа 0,5 л","шт"],["🥛 Айран","шт"],["🧃 Детский сок яблочный","шт"],["🍯 Сироп для колы","шт"],["🫧 Газовый баллон","шт"]]]
 ];
 const CATALOG = {"FixBite — Asia Park": FIXBITE};
-const catalog = p => CATALOG[p] || CATS;
-const KEY = "zakup-v2";
+const catalog = p => FIXBITE; // один список для всех точек
+const KEY = "zakup-v3";
 const blank = () => ({on:false, q:""});
 const build = p => catalog(p).flatMap(([c, list]) => list.map(([n, u]) => ({c, n, u, buy:blank(), left:blank()})));
 let S;
 try { S = JSON.parse(localStorage.getItem(KEY)); } catch(e) {}
 if (!S || typeof S.lists !== "object") {
-  let old = null; try { old = JSON.parse(localStorage.getItem("lovefood-v1")); } catch(e) {}
+  let old = null; try { old = JSON.parse(localStorage.getItem("zakup-v2")) || JSON.parse(localStorage.getItem("lovefood-v1")); } catch(e) {}
   S = {point:(old && old.point) || "", mode:(old && old.mode) || "buy", who:(old && old.who) || "", pin:(old && old.pin) || "", edit:false, lists:{}};
 }
 const EMO = /^\p{Extended_Pictographic}/u;
