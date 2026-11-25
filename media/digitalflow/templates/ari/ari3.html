@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:#0B0D12}
+body{width:1080px;height:1920px;overflow:hidden;background:#0B0D12;font-family:Montserrat,Inter,sans-serif;color:#F2F3F5;position:relative}
+#bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,#1B2230 0%,#0B0D12 62%)}
+.star{position:absolute;width:4px;height:4px;border-radius:50%;background:#9AA3B5}
+#glow{position:absolute;left:290px;top:420px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,255,46,.35),rgba(200,255,46,0) 65%);opacity:0}
+#top{position:absolute;top:120px;left:0;right:0;text-align:center;font-weight:800;font-size:30px;letter-spacing:4px;color:#7C818C}
+#top span{color:#C8FF2E}
+#robotWrap{position:absolute;left:340px;top:460px;width:400px;height:500px;transform-origin:200px 250px}
+#sub{position:absolute;left:80px;right:80px;top:1330px;text-align:center;font-weight:800;font-size:66px;line-height:1.18;letter-spacing:-1px}
+#sub em{font-style:normal;color:#C8FF2E}
+#note{position:absolute;bottom:70px;left:0;right:0;text-align:center;font-size:24px;color:#5C6170;font-family:Inter,sans-serif}
+.layer{position:absolute;opacity:0}
+.emo{position:absolute;font-size:120px;line-height:1;transform:translate(-50%,-50%)}
+.x{position:absolute;font-size:90px;color:#FF5A5A;font-weight:900;transform:translate(-50%,-50%)}
+#card{left:190px;top:1020px;width:700px;padding:36px 44px;border-radius:36px;background:#1C2029;border:3px solid #2A303C;font-size:48px;font-weight:700}
+#card b{color:#C8FF2E}
+#city{left:0;top:780px;width:1080px;height:520px}
+#person{left:540px;top:900px;font-size:230px;transform:translate(-50%,-50%)}
+#hour{left:540px;top:760px;font-size:300px;transform:translate(-50%,-50%)}
+#bigword{left:0;right:0;top:1060px;text-align:center;font-size:180px;font-weight:800;color:#C8FF2E;letter-spacing:6px}
+#endcard{left:120px;right:120px;top:1060px;text-align:center}
+#endcard .t{font-size:72px;font-weight:800}
+#endcard .s{margin-top:28px;font-size:34px;color:#7C818C;font-weight:600;letter-spacing:2px}
+#endcard .s span{color:#C8FF2E}
+.qm{position:absolute;font-size:90px;font-weight:800;color:#C8FF2E}
+</style><style>
+.it{position:absolute;transform:translate(-50%,-50%);opacity:0;font-size:150px;line-height:1}
+.chip{position:absolute;transform:translate(-50%,-50%);opacity:0;background:#1C2029;border:3px solid #3A4150;border-radius:26px;padding:16px 26px;font-size:40px;font-weight:700;white-space:nowrap}
+.role{border-color:#C8FF2E}
+#bubble{position:absolute;left:540px;top:690px;transform:translate(-50%,-50%);opacity:0;background:#F2F3F5;color:#0F1115;border-radius:36px;padding:24px 36px;font-size:44px;font-weight:800;white-space:nowrap}
+#teaser{position:absolute;left:540px;top:1380px;transform:translate(-50%,-50%);opacity:0;border:3px solid #C8FF2E;border-radius:28px;padding:20px 30px;font-size:38px;font-weight:700;color:#C8FF2E;white-space:nowrap}
+</style></head><body>
+<div id="bg"></div><div id="sky" style="position:absolute;inset:0;background:linear-gradient(#5C8FD6,#F3C98B);opacity:0"></div>
+<div id="stars"></div>
+<div id="glow"></div>
+<div id="top">ДНЕВНИК <span>АРИ</span> · ДЕНЬ 2</div>
+
+<svg id="city" class="layer" viewBox="0 0 1080 520">
+ <g fill="#1F2736">
+  <rect x="0" y="300" width="120" height="220"/><rect x="110" y="220" width="90" height="300"/><rect x="190" y="330" width="130" height="190"/>
+  <rect x="310" y="180" width="80" height="340"/><rect x="380" y="270" width="140" height="250"/><rect x="510" y="140" width="90" height="380"/>
+  <rect x="590" y="250" width="130" height="270"/><rect x="710" y="200" width="100" height="320"/><rect x="800" y="300" width="140" height="220"/><rect x="930" y="230" width="150" height="290"/>
+ </g>
+ <g id="wins" fill="#C8FF2E"></g>
+</svg>
+
+<div id="robotWrap">
+<svg viewBox="0 0 400 500" width="400" height="500">
+ <defs>
+  <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2F4F8"/><stop offset="1" stop-color="#B9C0CC"/></linearGradient>
+ </defs>
+ <g id="armL" transform="rotate(0 110 300)"><rect x="52" y="290" width="62" height="34" rx="17" fill="url(#metal)"/><circle cx="50" cy="307" r="24" fill="url(#metal)"/></g>
+ <g id="armR"><rect x="286" y="290" width="62" height="34" rx="17" fill="url(#metal)"/><circle cx="350" cy="307" r="24" fill="url(#metal)"/></g>
+ <rect x="110" y="270" width="180" height="170" rx="46" fill="url(#metal)"/>
+ <circle id="chest" cx="200" cy="350" r="22" fill="#C8FF2E" opacity=".5"/>
+ <rect x="140" y="438" width="40" height="40" rx="12" fill="#9EA6B4"/><rect x="220" y="438" width="40" height="40" rx="12" fill="#9EA6B4"/>
+ <g id="head">
+  <line x1="200" y1="62" x2="200" y2="22" stroke="#B9C0CC" stroke-width="8"/>
+  <circle id="ant" cx="200" cy="18" r="14" fill="#C8FF2E"/>
+  <rect x="60" y="60" width="280" height="200" rx="70" fill="url(#metal)"/>
+  <rect x="88" y="88" width="224" height="146" rx="52" fill="#0F1115"/>
+  <ellipse id="eyeL" cx="155" cy="155" rx="24" ry="30" fill="#C8FF2E"/>
+  <ellipse id="eyeR" cx="245" cy="155" rx="24" ry="30" fill="#C8FF2E"/>
+  <path id="mouth" d="M180 205 Q200 218 220 205" stroke="#C8FF2E" stroke-width="7" fill="none" stroke-linecap="round"/>
+ </g>
+</svg>
+</div>
+
+
+<div id="shop" class="it" style="left:540px;top:960px;font-size:330px">🏪</div>
+<div id="sun" class="it" style="left:860px;top:330px;font-size:170px">☀️</div>
+<div id="moon" class="it" style="left:860px;top:330px;font-size:150px">🌙</div>
+<div id="person" class="it" style="left:540px;top:1050px;font-size:230px">🧑‍💼</div>
+<div id="lock" class="it" style="left:700px;top:1100px;font-size:110px">🔒</div>
+<div id="d1" class="it" style="left:220px;top:820px;font-size:130px">🚚</div>
+<div id="d2" class="it" style="left:860px;top:820px;font-size:130px">🙋</div>
+<div id="d3" class="it" style="left:860px;top:1130px;font-size:130px">👥</div>
+<div id="bubble">«Ну наконец-то!»</div>
+<div id="excl" class="it" style="left:700px;top:880px;font-size:150px;color:#FF5A5A;font-weight:900">!</div>
+<div id="c1" class="chip">💬 Сообщения</div><div id="c2" class="chip">📝 Пост</div><div id="c3" class="chip">🎨 Картинка</div><div id="c4" class="chip">📊 Таблица</div><div id="c5" class="chip">📱 Instagram</div>
+<div id="r1" class="chip role">👔 Директор</div><div id="r2" class="chip role">🛒 Продавец</div><div id="r3" class="chip role">🎨 Дизайнер</div><div id="r4" class="chip role">📈 Маркетолог</div><div id="r5" class="chip role">🧮 Бухгалтер</div>
+<div id="heart" class="it" style="left:540px;top:960px;font-size:130px">❤️</div>
+<div id="compass" class="it" style="left:540px;top:1080px;font-size:220px">🧭</div>
+<div id="endcard" class="layer"><div class="t">Продолжение<br>следует…</div><div class="s">ДНЕВНИК <span>АРИ</span> · DIGITAL FLOW</div></div>
+<div id="teaser">Сколько профессий у одного человека?</div>
+<div id="sub"></div>
+<div id="note">голос — ИИ</div>
+<script>
+const TL=__TL__;const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;const lerp=(a,b,p)=>a+(b-a)*p;
+let seed=21;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+const stars=[];for(let i=0;i<70;i++){const s=document.createElement('div');s.className='star';s.style.left=(rnd()*1080)+'px';s.style.top=(rnd()*1300)+'px';s.dataset.p=rnd()*6;$('stars').appendChild(s);stars.push(s)}
+const SUBS={1:[[0,'Люди работают даже тогда,<br>когда <em>работа закончилась</em>']],
+2:[[0,'Сегодня я провёл<br>ещё одно <em>наблюдение</em>.'],[.42,'Представьте человека<br>с <em>собственным бизнесом</em>.']],
+3:[[0,'Утром он открывает<br><em>свой магазин</em>.'],[.38,'Поставщики. Клиенты.<br>Сотрудники.']],
+4:[[0,'Вечером закрывает дверь:'],[.4,'«Ну наконец-то!<br><em>Можно отдохнуть</em>»']],
+5:[[0,'Но тут <em>вспоминает</em>…']],
+6:[[0,'И вот человек<br><em>снова за работой</em>.']],
+7:[[0,'Я задумался.<br><em>Почему так?</em>'],[.3,'Нужно быть сразу<br><em>всеми</em>?']],
+8:[[0,'Я могу помочь<br>с <em>частью задач</em>.'],[.45,'Но сначала пойму,<br>что <em>важно человеку</em>.']],
+9:[[0,'Кажется, я нашёл<br><em>направление</em>.']],
+10:[[0,'Завтра: сколько профессий<br>совмещает <em>один человек</em>?'],[.7,'']]};
+function seg(t){for(const s of TL.segs){if(t<s.end)return s}return TL.segs[TL.segs.length-1]}
+const op=(id,o)=>{$(id).style.opacity=o};
+function chipPos(id,x,y,o,sc=1){const e=$(id);e.style.left=x+'px';e.style.top=y+'px';e.style.opacity=o;e.style.transform=`translate(-50%,-50%) scale(${sc})`}
+function render(t){
+ const S=seg(t),n=S.i,lp=clamp((t-S.start)/S.dur),k=t-S.start;
+ stars.forEach(s=>s.style.opacity=.25+.35*Math.abs(Math.sin(t*0.8+ +s.dataset.p)));
+ let txt='';for(const [p,v] of SUBS[n]) if(lp>=p) txt=v; $('sub').innerHTML=txt; $('sub').style.opacity=clamp((k+0.1)/0.25);
+ ['shop','sun','moon','person','lock','d1','d2','d3','bubble','excl','heart','compass','endcard','teaser','sky'].forEach(id=>op(id,0));
+ ['c1','c2','c3','c4','c5','r1','r2','r3','r4','r5'].forEach(id=>op(id,0));
+ $('person').textContent='🧑‍💼'; $('person').style.transform='translate(-50%,-50%)'; $('person').style.left='540px'; $('person').style.top='1050px';
+ let rx=-250,ry=-300,rs=.6,eyeRy=30,blink=(t%3.7)<0.12,armL=0,armR=0,tilt=10,chest=.5,glow=0,mouth='M180 205 Q200 218 220 205';
+ const chipsXY=[[260,760],[820,760],[230,1130],[850,1130],[540,680]];
+ if(n===1){rx=0;ry=-40;rs=1.25;tilt=-5*Math.sin(t*1.5);eyeRy=26;mouth='M182 208 L218 208'}
+ if(n===2){const p=ease(clamp(k/0.8));rx=lerp(0,-250,p);ry=lerp(-40,-300,p);rs=lerp(1.25,.6,p);
+   if(lp>.42){const q=clamp((lp-.42)/.15);op('shop',q*.35);op('person',q);$('person').style.transform=`translate(-50%,-50%) scale(${lerp(.6,1,ease(q))})`}}
+ if(n===3){op('sky',clamp(k/0.6)*.55);op('sun',clamp(k/0.5));$('sun').style.top=lerp(520,330,ease(clamp(k/1.2)))+'px';op('shop',.5);op('person',1);
+   [['d1',.38],['d2',.55],['d3',.72]].forEach(([id,a])=>{const q=ease(clamp((lp-a)/.12));op(id,q);$(id).style.transform=`translate(-50%,-50%) scale(${lerp(.3,1,q)}) rotate(${8*Math.sin(t*5)}deg)`});
+   $('person').style.transform=`translate(-50%,-50%) translateX(${10*Math.sin(t*6)}px)`;mouth='M178 202 Q200 220 222 202'}
+ if(n===4){op('sky',clamp(.55-k/0.8*.55));op('moon',clamp(k/0.6));op('shop',.45);op('lock',clamp((k-0.5)/0.3));op('person',1);$('person').textContent='😌';
+   if(lp>.4){op('bubble',clamp((lp-.4)*6));$('bubble').style.transform=`translate(-50%,-50%) scale(${lerp(.7,1,ease(clamp((lp-.4)*5)))})`}}
+ if(n===5){op('moon',1);op('shop',.35);op('person',1);$('person').textContent=lp<.18?'😳':'😩';
+   if(lp<.25){op('excl',clamp(k/0.2));$('excl').style.transform=`translate(-50%,-50%) scale(${1+.2*Math.sin(t*20)})`}
+   const ids=['c1','c2','c3','c4','c5'],starts=[.2,.36,.52,.68,.82];
+   ids.forEach((id,i)=>{const q=ease(clamp((lp-starts[i])/.08));const [x,y]=chipsXY[i];chipPos(id,x,y,q,lerp(1.5,1,q))});eyeRy=36}
+ if(n===6){op('moon',1);op('person',1);$('person').textContent='🧑‍💻';$('person').style.transform=`translate(-50%,-50%) translateX(${8*Math.sin(t*30)}px)`;
+   ['c1','c2','c3','c4','c5'].forEach((id,i)=>{const a=k*1.4+i*2*Math.PI/5;chipPos(id,540+330*Math.cos(a),1020+260*Math.sin(a),1)});eyeRy=20;mouth='M180 214 Q200 200 220 214'}
+ if(n===7){op('person',1);$('person').textContent='🧑‍💼';$('person').style.top='1150px';
+   if(lp<.3){eyeRy=22;tilt=-10}
+   const roles=['r1','r2','r3','r4','r5'],st=[.42,.52,.62,.72,.82],rp=[[540,700],[240,840],[840,840],[260,990],[820,990]];
+   roles.forEach((id,i)=>{const q=ease(clamp((lp-st[i])/.07));const [x,y]=rp[i];chipPos(id,x,y,q,lerp(1.4,1,q))});
+   if(lp>.82){$('person').style.transform=`translate(-50%,-50%) translateX(${10*Math.sin(t*25)}px)`}}
+ if(n===8){op('person',1);$('person').style.top='1150px';const p=ease(clamp(k/0.8));rx=lerp(-250,-120,p);ry=lerp(-300,-260,p);rs=lerp(.6,.75,p);
+   const rp=[[540,700],[240,840],[840,840],[260,990],[820,990]];
+   ['r1','r2','r3','r4','r5'].forEach((id,i)=>{let [x,y]=rp[i];let o=1;if(i>=2){const q=ease(clamp((lp-.1-(i-2)*.08)/.2));x=lerp(x,290,q);y=lerp(y,330,q);o=1-q}chipPos(id,x,y,o)});
+   mouth='M176 202 Q200 224 224 202';armR=-30;
+   if(lp>.45){op('heart',clamp((lp-.45)*5));$('heart').style.transform=`translate(-50%,-50%) scale(${1+.08*Math.sin(t*6)})`;eyeRy=26;tilt=-6;mouth='M182 208 Q200 214 218 208'}}
+ if(n===9){rx=0;ry=-280;rs=1.05;glow=.8;chest=1;op('compass',clamp(k/0.4));$('compass').style.transform=`translate(-50%,-50%) rotate(${lerp(-60,0,ease(clamp(k/1.5)))+5*Math.sin(t*3)}deg)`;mouth='M176 202 Q200 224 224 202';eyeRy=30}
+ if(n===10){rx=0;ry=-260;rs=1.05;armR=-40+25*Math.sin(k*8);mouth='M175 200 Q200 228 225 200';glow=.4;
+   if(lp<.7){op('teaser',clamp(k/0.4))}else{op('endcard',clamp((lp-.7)*5));$('sub').style.opacity=0}}
+ $('robotWrap').style.transform=`translate(${rx}px,${ry}px) scale(${rs})`;$('head').setAttribute('transform',`rotate(${tilt} 200 160)`);
+ ['eyeL','eyeR'].forEach(e=>$(e).setAttribute('ry',blink?3:eyeRy));$('mouth').setAttribute('d',mouth);
+ $('armL').setAttribute('transform',`rotate(${armL} 110 307)`);$('armR').setAttribute('transform',`rotate(${armR} 290 307)`);
+ $('chest').setAttribute('opacity',chest);$('ant').setAttribute('opacity',.4+.6*Math.abs(Math.sin(t*2.5)));
+ $('glow').style.opacity=glow;$('glow').style.left=(290+rx)+'px';$('glow').style.top=(420+ry)+'px';
+ document.body.style.opacity=clamp(t/0.3)*clamp((TL.total-t)/0.5);
+}
+window.render=render;</script></body></html>
