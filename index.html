@@ -162,20 +162,33 @@ const CATS = [
   ["Овощи / соусы / бакалея", [["Булочки (бургер)","шт"],["Мука","кг"],["Картофель (фри)","кг"],["Огурцы","кг"],["Помидоры","кг"],["Айсберг","шт"],["Халапеньо","бан"],["Кетчуп / майонез","уп"],["Терияки / спайси","уп"],["Васаби / имбирь","уп"]]],
   ["Напитки / упаковка", [["Кола 0,5 л","шт"],["Кола 1 л","шт"],["Кола 2 л","шт"],["Соки (манго / гранат)","шт"],["Коробки пицца 32 см","шт"],["Упаковка суши","шт"],["Пакеты фри","шт"]]]
 ];
-const KEY = "lovefood-v1";
+const FIXBITE = [
+  ["🍣 Суши", [["🐟 Сёмга стейк ❤️","кг"],["🐟 Сёмга шняга ❤️","кг"],["🧀 Сыр «Савушкин» 10 кг","шт"],["🟩 Нори 100 шт","уп"],["🟠 Тобико оранжевый","кг"],["🫚 Имбирь красный","уп"],["🟢 Васаби","уп"],["🍶 Соус унаги (Тамаки)","шт"],["⚪ Кунжут белый","кг"],["🌶️ Соус кимчи","шт"],["🍚 Рис «Баракат»","кг"],["🫗 Кунжутное масло","шт"],["🎨 Краситель оранжевый","шт"],["🟡 Панко жёлтый, мешок 10 кг","шт"],["🍶 Рисовый уксус 20 л","шт"],["🌿 Комбу ❤️","уп"],["🍶 Соевый соус для суши 20 л","шт"]]],
+  ["🍕 Пицца", [["🫓 Тесто 30 см ❤️","шт"],["🥫 Пицца-соус ж/б","бан"],["🍅 Пицца-соус томатный ❤️","шт"],["🍄 Грибы целые ж/б, большие","бан"],["🥓 Колбаса «Ширин»","кг"],["🧀 Сыр моцарелла","кг"],["🥩 Фарш готовый ❤️","кг"],["🧀 Гауда (1 батон) для сырных палочек","шт"],["🟠 Панко оранжевый","шт"]]],
+  ["🍔 Бургер, донер", [["🍗 Куриная котлета ❤️","шт"],["🥩 Говяжья котлета ❤️","шт"],["🍞 Булочки","шт"],["🌭 Булочки для хот-дога","шт"],["🍞 Детские булочки","шт"],["🫓 Лаваш","шт"],["🍗 Кебаб куриный ❤️","кг"],["🥩 Кебаб говяжий ❤️","кг"],["🧒 Детская котлета ❤️","шт"],["🧀 Сырные палочки ❤️","уп"],["🍗 Стрипсы ❤️","кг"],["🥚 Майонез 67%, 10 л","шт"],["🍅 Кетчуп 5 л","шт"],["🔥 Соус барбекю","шт"],["🧀 Сырный соус","шт"],["🥒 Солёные огурцы","бан"],["🍗 Наггетсы","кг"],["🍗 Крылья","кг"],["🍗 Куриное филе","кг"],["🛢️ Фритюрный жир","шт"],["🌾 Мука «Цесна»","кг"],["⚫ Чёрный перец","уп"],["🍶 Уксус 9%","шт"],["🫗 Растительное масло","л"],["🌶️ Красный острый перец","уп"],["🧂 Приправа «Снег бар»","уп"],["🧂 Экстра-соль","кг"],["🧂 Обычная соль","кг"],["🍬 Сахар","кг"],["🌶️ Паприка","уп"],["🌭 Сосиски","шт"],["🍟 Картофель фри","кг"],["🫑 Донер-перчик","шт"]]],
+  ["🥬 Овощи", [["🍅 Помидоры","кг"],["🥒 Огурцы","кг"],["🥬 Листья салата","кг"],["🧄 Чеснок","кг"],["🫚 Свежий имбирь","кг"]]],
+  ["🧾 Касса, упаковка", [["📦 Коробка для пиццы 30 см","шт"],["📦 Суши-бокс с собой","шт"],["🍱 Посуда для суши (Пинаплас)","шт"],["🥣 Соусники 30 г / 50 г","уп"],["🥢 Палочки для суши","уп"],["🧵 Верёвка","шт"],["🛍️ Пакет с ручками","уп"],["🛍️ Пакет для донер-перчика","уп"],["🥤 Стакан 0,2","уп"],["☕ Бумажный стакан для чая","уп"],["🍵 Чай Greenfield 100 пак. (чёрный, зелёный)","уп"],["🍽️ Тарелка маленькая","уп"],["🍽️ Тарелка большая","уп"],["🍴 Вилки","уп"],["🥄 Чайные ложки","уп"],["🧻 Салфетки","уп"],["🥤 Стаканы для колы 0,3 / 0,4 / 0,5","уп"],["🥤 Крышки для колы","уп"],["🥤 Трубочки","уп"],["🧾 Кассовая лента","шт"],["🛍️ Пакет для картошки","уп"],["🍟 Бумага для фри (маленькая и средняя)","уп"],["🍔 Бумага для бургеров","уп"],["🌯 Бумага для донеров","уп"],["🧤 Перчатки чёрные, M","уп"],["🪣 Ведро для крыльев","шт"],["🧴 Fairy","шт"],["🧤 Жёлтые перчатки","шт"],["🧽 Вафельная тряпка","шт"],["🧹 Тряпка для пола","шт"]]],
+  ["🥤 Напитки", [["🥤 Дизи","шт"],["🥤 Кола 1 л","шт"],["🥤 Кола 0,5 л","шт"],["🧃 Fuse Tea 0,5 л","шт"],["🧃 Fuse Tea 1 л","шт"],["💧 Вода без газа 0,5 л","шт"],["🥛 Айран","шт"],["🧃 Детский сок яблочный","шт"],["🍯 Сироп для колы","шт"],["🫧 Газовый баллон","шт"]]]
+];
+const CATALOG = {"FixBite — Asia Park": FIXBITE};
+const catalog = p => CATALOG[p] || CATS;
+const KEY = "zakup-v2";
 const blank = () => ({on:false, q:""});
+const build = p => catalog(p).flatMap(([c, list]) => list.map(([n, u]) => ({c, n, u, buy:blank(), left:blank()})));
 let S;
 try { S = JSON.parse(localStorage.getItem(KEY)); } catch(e) {}
-if (!S || !Array.isArray(S.items)) S = {
-  point:"", mode:"buy", who:"", edit:false,
-  items: CATS.flatMap(([c, list]) => list.map(([n, u]) => ({c, n, u, buy:blank(), left:blank()})))
-};
+if (!S || typeof S.lists !== "object") {
+  let old = null; try { old = JSON.parse(localStorage.getItem("lovefood-v1")); } catch(e) {}
+  S = {point:(old && old.point) || "", mode:(old && old.mode) || "buy", who:(old && old.who) || "", pin:(old && old.pin) || "", edit:false, lists:{}};
+}
+const EMO = /^\p{Extended_Pictographic}/u;
+const IT = () => { const k = S.point || "_"; return S.lists[k] = S.lists[k] || build(S.point); };
 S.edit = false;
 if (!POINTS.includes(S.point)) S.point = "";
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const cats = () => [...new Set([...CATS.map(c => c[0]), ...S.items.map(i => i.c)])];
+const cats = () => [...new Set([...catalog(S.point).map(c => c[0]), ...IT().map(i => i.c)])];
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} };
 const today = () => new Date().toLocaleDateString("ru-RU", {day:"numeric", month:"long"});
 const now = () => new Date().toLocaleTimeString("ru-RU", {hour:"2-digit", minute:"2-digit"});
@@ -198,7 +211,7 @@ function renderTop(){
 function renderList(){
   const k = S.mode === "left" ? "left" : "buy";
   $("list").innerHTML = cats().map(c => {
-    const rows = S.items.map((it, i) => ({it, i})).filter(x => x.it.c === c);
+    const rows = IT().map((it, i) => ({it, i})).filter(x => x.it.c === c);
     if (!rows.length) return "";
     const n = rows.filter(x => x.it[k].on).length;
     return `<h2>${esc(c)} <small>${n || ""}</small></h2>` + rows.map(({it, i}) => `
@@ -222,12 +235,12 @@ function renderList(){
 function message(){
   const left = S.mode === "left", k = left ? "left" : "buy";
   const parts = cats().map(c => {
-    const picked = S.items.filter(i => i.c === c && i[k].on);
+    const picked = IT().filter(i => i.c === c && i[k].on);
     if (!picked.length) return "";
     return "*" + c + "*\n" + picked.map(i => {
       const q = i[k].q;
-      if (left) { const zero = !q || parseFloat(q.replace(",", ".")) === 0; return (zero ? "❗ " : "▫️ ") + i.n + " — " + (zero ? "0" : q) + " " + i.u; }
-      return "▫️ " + i.n + (q ? " — " + q + " " + i.u : "");
+      if (left) { const zero = !q || parseFloat(q.replace(",", ".")) === 0; return (zero ? "❗ " : (EMO.test(i.n) ? "" : "▫️ ")) + i.n + " — " + (zero ? "0" : q) + " " + i.u; }
+      return (EMO.test(i.n) ? "" : "▫️ ") + i.n + (q ? " — " + q + " " + i.u : "");
     }).join("\n");
   }).filter(Boolean);
   if (!parts.length) return "";
@@ -236,7 +249,7 @@ function message(){
 
 function update(){
   const k = S.mode === "left" ? "left" : "buy";
-  const n = S.items.filter(i => i[k].on).length;
+  const n = IT().filter(i => i[k].on).length;
   const msg = message();
   const ok = n && S.point;
   $("cnt").textContent = n;
@@ -258,19 +271,19 @@ function updateShift(){
 }
 
 function setQty(i, q){
-  const k = S.mode === "left" ? "left" : "buy", it = S.items[i];
+  const k = S.mode === "left" ? "left" : "buy", it = IT()[i];
   it[k].q = q;
   if (q !== "" && !(k === "buy" && parseFloat(q) === 0)) it[k].on = true;
   if (k === "buy" && (q === "" || parseFloat(q) === 0)) { it[k].q = ""; }
 }
 
-$("points").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.point = b.dataset.p; renderTop(); update(); updateShift(); });
+$("points").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.point = b.dataset.p; renderTop(); renderList(); updateShift(); });
 $("modes").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.mode = b.dataset.m; renderTop(); if (S.mode === "buy" || S.mode === "left") renderList(); else if (S.mode === "shift") updateShift(); else openTabel(); save(); });
 
 $("list").addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return;
-  const i = +b.dataset.i, k = S.mode === "left" ? "left" : "buy", it = S.items[i];
-  if (b.dataset.a === "x") { S.items.splice(i, 1); renderList(); return; }
+  const i = +b.dataset.i, k = S.mode === "left" ? "left" : "buy", it = IT()[i];
+  if (b.dataset.a === "x") { IT().splice(i, 1); renderList(); return; }
   const cur = parseFloat((it[k].q || "0").replace(",", ".")) || 0;
   const next = b.dataset.a === "+" ? cur + 1 : Math.max(0, cur - 1);
   if (k === "buy" && next === 0) { it[k].q = ""; it[k].on = false; }
@@ -279,14 +292,14 @@ $("list").addEventListener("click", e => {
 });
 $("list").addEventListener("change", e => {
   const t = e.target, i = +t.dataset.i, k = S.mode === "left" ? "left" : "buy";
-  if (t.type === "checkbox") { S.items[i][k].on = t.checked; if (!t.checked && k === "buy") S.items[i][k].q = ""; renderList(); }
-  else if (t.tagName === "SELECT") { S.items[i].u = t.value; update(); }
+  if (t.type === "checkbox") { IT()[i][k].on = t.checked; if (!t.checked && k === "buy") IT()[i][k].q = ""; renderList(); }
+  else if (t.tagName === "SELECT") { IT()[i].u = t.value; update(); }
   else if (t.classList.contains("q")) { setQty(i, t.value.trim()); renderList(); }
 });
 
-$("clearBtn").addEventListener("click", () => { const k = S.mode === "left" ? "left" : "buy"; S.items.forEach(i => i[k] = blank()); renderList(); });
+$("clearBtn").addEventListener("click", () => { const k = S.mode === "left" ? "left" : "buy"; IT().forEach(i => i[k] = blank()); renderList(); });
 $("editBtn").addEventListener("click", () => { S.edit = !S.edit; renderList(); });
-function add(){ const n = $("newName").value.trim(); if (!n) return; S.items.push({c:$("newCat").value, n, u:"шт", buy:blank(), left:blank()}); $("newName").value = ""; renderList(); }
+function add(){ const n = $("newName").value.trim(); if (!n) return; IT().push({c:$("newCat").value, n, u:"шт", buy:blank(), left:blank()}); $("newName").value = ""; renderList(); }
 $("addBtn").addEventListener("click", add);
 $("newName").addEventListener("keydown", e => { if (e.key === "Enter") add(); });
 
