@@ -237,7 +237,7 @@ function message(){
   const parts = cats().map(c => {
     const picked = IT().filter(i => i.c === c && i[k].on);
     if (!picked.length) return "";
-    return "*" + c + "*\n" + picked.map(i => {
+    return "*[ " + c.toUpperCase() + " ]*\n" + picked.map(i => {
       const q = i[k].q;
       if (left) { const zero = !q || parseFloat(q.replace(",", ".")) === 0; return (zero ? "❗ " : (EMO.test(i.n) ? "" : "▫️ ")) + i.n + " — " + (zero ? "0" : q) + " " + i.u; }
       return (EMO.test(i.n) ? "" : "▫️ ") + i.n + (q ? " — " + q + " " + i.u : "");
@@ -255,7 +255,7 @@ function update(){
   $("cnt").textContent = n;
   $("send").classList.toggle("off", !ok);
   $("send").href = ok ? wa(msg) : "#";
-  $("prev").innerHTML = n ? "<b>Так увидят в группе:</b>" + esc(msg).replace(/\*/g, "") : '<span class="mute">Отметь продукты — здесь появится готовое сообщение.</span>';
+  $("prev").innerHTML = n ? "<b>Так увидят в группе:</b>" + esc(msg).replace(/\*([^*\n]+)\*/g, "<strong>$1</strong>") : '<span class="mute">Отметь продукты — здесь появится готовое сообщение.</span>';
   save();
 }
 
