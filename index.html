@@ -59,6 +59,13 @@ h2 small{color:var(--red);font-weight:700}
 .big.in{background:var(--wa)}.big.out{background:#111}
 :root[data-theme=dark] .big.out{background:#3a3a3a}
 .big.off{background:var(--line);color:var(--mute);pointer-events:none}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:18px;z-index:50}
+.modal.hide{display:none}
+.mbox{background:var(--bg);color:var(--ink);border-radius:18px;padding:20px;width:100%;max-width:420px;display:grid;gap:12px}
+.mbox h3{margin:0;font-size:22px}
+.chk{display:flex;align-items:center;gap:12px;font-size:19px;font-weight:600;padding:14px;border:2px solid var(--line);border-radius:14px}
+.chk input{width:28px;height:28px;accent-color:var(--wa)}
+.mbox .cancel{background:none;border:0;color:var(--mute);font-size:16px;padding:8px}
 .clock{font-size:44px;font-weight:700;text-align:center;margin:10px 0 0;font-variant-numeric:tabular-nums}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--red);outline-offset:2px}
 .hide{display:none!important}
@@ -120,6 +127,15 @@ details{margin-top:14px}summary{cursor:pointer;font-weight:500;min-height:44px;d
       <a class="big out" id="outBtn" href="#" target="_blank" rel="noopener">Ушёл со смены</a>
       <p class="mute">Время ставится само в момент нажатия. Имя запомнится на этом телефоне.</p>
       <p class="mute" id="markStatus"></p>
+    </div>
+    <div class="modal hide" id="outModal" role="dialog" aria-modal="true" aria-labelledby="outTitle">
+      <div class="mbox">
+        <h3 id="outTitle">Перед уходом проверь:</h3>
+        <label class="chk"><input type="checkbox" class="oc"> 🥤 Кола-аппарат выключен</label>
+        <label class="chk"><input type="checkbox" class="oc"> ⚡ Свет и электричество выключены</label>
+        <a class="big out off" id="outGo" href="#" target="_blank" rel="noopener">Всё выключил — ухожу</a>
+        <button class="cancel" id="outCancel">Отмена</button>
+      </div>
     </div>
   </section>
 
@@ -265,7 +281,8 @@ function updateShift(){
   const base = name => (txt) => txt + ": " + name + "\nТочка: " + S.point + "\nВремя: " + now() + ", " + new Date().toLocaleDateString("ru-RU");
   const b = base(S.who.trim());
   $("inBtn").href = ok ? wa(b("✅ *Пришёл на смену*")) : "#";
-  $("outBtn").href = ok ? wa(b("🏁 *Ушёл со смены*")) : "#";
+  $("outBtn").href = "#";
+  $("outGo").href = ok ? wa(b("🏁 *Ушёл со смены*") + "\n✅ Кола-аппарат и электричество выключены") : "#";
   $("inBtn").classList.toggle("off", !ok);
   $("outBtn").classList.toggle("off", !ok);
 }
@@ -325,11 +342,27 @@ async function ask(data){
   const r = await fetch(API, {method:"POST", body:JSON.stringify(data)});
   return r.json();
 }
-["inBtn", "outBtn"].forEach(id => $(id).addEventListener("click", () => {
+function mark(type){
   if (!S.point || !S.who.trim()) return;
-  const ok = post({action:"mark", type: id === "inBtn" ? "in" : "out", name:S.who.trim(), point:S.point});
+  const ok = post({action:"mark", type, name:S.who.trim(), point:S.point});
   $("markStatus").textContent = ok ? "✓ Отметка записана в табель (" + now() + ")" : "";
-}));
+}
+$("inBtn").addEventListener("click", () => mark("in"));
+const ocs = [...document.querySelectorAll(".oc")];
+const closeOut = () => $("outModal").classList.add("hide");
+$("outBtn").addEventListener("click", e => {
+  e.preventDefault();
+  if (!S.point || !S.who.trim()) return;
+  ocs.forEach(c => c.checked = false); $("outGo").classList.add("off");
+  updateShift(); $("outModal").classList.remove("hide");
+});
+ocs.forEach(c => c.addEventListener("change", () => $("outGo").classList.toggle("off", !ocs.every(x => x.checked))));
+$("outGo").addEventListener("click", e => {
+  if (!ocs.every(x => x.checked)) { e.preventDefault(); return; }
+  updateShift(); mark("out"); closeOut();
+});
+$("outCancel").addEventListener("click", closeOut);
+$("outModal").addEventListener("click", e => { if (e.target.id === "outModal") closeOut(); });
 $("send").addEventListener("click", () => { post({action:"list", mode:S.mode, point:S.point, text:message()}); });
 
 /* ---- табель ---- */
