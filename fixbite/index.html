@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>FIXBITE — меню и заказ · всё по 1500 ₸</title>
+<meta name="description" content="FIXBITE, ТРЦ Азия Парк, 3 этаж. Бургеры, донеры, пицца, суши, курица — всё по 1500 ₸. Заказ в WhatsApp.">
+<meta name="theme-color" content="#111111">
+<style>
+:root{--red:#141414;--red2:#2a2a2a;--y:#ffd400;--ink:#1d1a19;--mute:#77706c;--line:#ece6e2;--bg:#f7f4f1;--card:#fff;--wa:#1fa855;--gold:#f6c343}
+*{box-sizing:border-box;margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-tap-highlight-color:transparent;padding-bottom:96px}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+header{background:linear-gradient(135deg,#0d0d0d,#1c1c1c 60%,#2b2500);color:#fff;padding:18px 16px 22px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;max-width:1100px;margin:0 auto}
+.who b{display:block;font-size:20px;letter-spacing:.2px}
+.who span{font-size:13px;opacity:.85}
+.call{display:flex;gap:8px}
+.call a{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:#fff;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.call a svg{width:24px;height:24px}
+.logo{font-size:30px;font-weight:900;letter-spacing:.5px}.logo i{font-style:normal;color:var(--y)}
+.big1500{display:inline-block;margin-top:12px;background:var(--y);color:#111;font-weight:900;font-size:22px;padding:10px 16px;border-radius:14px}
+.call a.wa{background:#25d366}
+.hero{max-width:1100px;margin:14px auto 0}
+.hero h1{font-size:25px;line-height:1.2;font-weight:800}
+.hero p{margin-top:6px;font-size:14.5px;opacity:.9;line-height:1.4}
+.steps{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.steps span{background:rgba(255,255,255,.12);color:#fff;font-weight:600;border-radius:20px;padding:6px 11px;font-size:13px}
+.brands{max-width:1100px;margin:14px auto 0;padding:0 16px;display:flex;gap:10px;overflow-x:auto;scrollbar-width:none}
+.brands::-webkit-scrollbar,.chips::-webkit-scrollbar{display:none}
+.brands div{flex:0 0 auto;height:58px;padding:6px 10px;background:#fff;border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;align-items:center}
+.brands img{height:44px;width:auto;border-radius:6px}
+.bar{position:sticky;top:0;z-index:20;background:rgba(247,244,241,.96);backdrop-filter:blur(8px);padding:10px 0 8px;border-bottom:1px solid var(--line)}
+.search{max-width:1100px;margin:0 auto;padding:0 16px}
+.search input{width:100%;height:46px;border-radius:14px;border:1.5px solid var(--line);padding:0 14px 0 42px;font-size:16px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%2377706c' stroke-width='2'%3E%3Ccircle cx='9' cy='9' r='6'/%3E%3Cpath d='m14 14 4 4'/%3E%3C/svg%3E") no-repeat 13px center;outline:none}
+.search input:focus{border-color:var(--red)}
+.chips{max-width:1100px;margin:8px auto 0;padding:0 16px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.chips button{flex:0 0 auto;padding:9px 14px;border-radius:20px;background:#fff;border:1.5px solid var(--line);font-size:14px;font-weight:600;white-space:nowrap}
+.chips button.on{background:#111;border-color:#111;color:var(--y)}
+main{max-width:1100px;margin:0 auto;padding:6px 16px 20px}
+h2{font-size:20px;margin:22px 0 4px;display:flex;align-items:center;gap:10px}
+h2 small{font-size:13px;color:var(--mute);font-weight:500}
+.sec-note{font-size:13px;color:var(--mute);margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{background:var(--card);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(0,0,0,.06);position:relative}
+.ph{aspect-ratio:4/3;background:#1a1a1a;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph .none{font-size:64px;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 45%,#3a3000,#141414 70%)}
+.tag{position:absolute;top:8px;left:8px;background:var(--gold);color:#3a2a00;font-size:11.5px;font-weight:800;padding:4px 8px;border-radius:8px;text-transform:uppercase}
+.info{padding:8px 10px 10px;display:flex;flex-direction:column;flex:1}
+.br{font-size:11.5px;color:#b08900;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+.nm{font-size:14.5px;font-weight:700;line-height:1.25;margin-top:2px}
+.sb{font-size:12.5px;color:var(--mute);margin-top:3px;line-height:1.3}
+.pr{margin-top:auto;padding-top:8px;font-size:17px;font-weight:800}
+.pr small{font-size:12.5px;color:var(--mute);font-weight:600}
+.add{margin-top:8px;height:42px;border-radius:12px;background:var(--y);color:#111;font-weight:700;font-size:15px;width:100%}
+.step{margin-top:8px;display:flex;align-items:center;height:42px;border-radius:12px;background:#fff3b0;overflow:hidden}
+.step button{width:44px;height:42px;font-size:22px;font-weight:700;color:#111}
+.step input{flex:1;min-width:0;text-align:center;border:0;background:none;font-size:16px;font-weight:800;color:var(--ink)}
+.step span{font-size:12px;color:var(--mute);padding-right:4px}
+.empty{text-align:center;color:var(--mute);padding:40px 0}
+footer{max-width:1100px;margin:10px auto 0;padding:0 16px 20px;font-size:12.5px;color:var(--mute);line-height:1.5}
+.cartbar{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--bg) 70%,rgba(247,244,241,0));transform:translateY(120%);transition:transform .25s}
+.cartbar.show{transform:none}
+.cartbar button{max-width:640px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;width:100%;height:58px;border-radius:16px;background:var(--wa);color:#fff;padding:0 18px;font-size:16px;font-weight:700;box-shadow:0 6px 18px rgba(31,168,85,.35)}
+.sheet{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center}
+.sheet.open{display:flex}
+.panel{background:#fff;width:100%;max-width:640px;max-height:92vh;border-radius:22px 22px 0 0;display:flex;flex-direction:column}
+.ph2{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 10px;border-bottom:1px solid var(--line)}
+.ph2 b{font-size:19px}
+.x{width:38px;height:38px;border-radius:50%;background:#f1ecea;font-size:20px}
+.items{overflow-y:auto;padding:6px 18px}
+.row{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.row img{width:52px;height:52px;object-fit:contain;border-radius:8px;background:#faf8f6;flex:0 0 auto}
+.row .t{flex:1;min-width:0}
+.row .t b{display:block;font-size:14px;line-height:1.25}
+.row .t span{font-size:12.5px;color:var(--mute)}
+.row .step{margin:0;width:128px;flex:0 0 auto;height:38px}
+.row .step button{width:38px;height:38px;font-size:20px}
+.form{padding:12px 18px;display:grid;gap:8px}
+.form input,.form textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px;font-size:16px;font-family:inherit;outline:none}
+.form textarea{min-height:58px;resize:vertical}
+.tot{display:flex;justify-content:space-between;font-size:16px;font-weight:800;padding:4px 18px 0}
+.hint{font-size:12.5px;color:var(--mute);padding:4px 18px 0}
+.send{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 18px calc(14px + env(safe-area-inset-bottom));height:56px;border-radius:16px;background:var(--wa);color:#fff;font-size:17px;font-weight:800;text-decoration:none}
+.clear{font-size:14px;color:var(--mute);text-decoration:underline;margin:0 auto 6px;display:block}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="who"><b class="logo">FIX<i>BITE</i></b><span>ТРЦ Азия Парк · 3 этаж</span></div>
+    <div class="call">
+      <a href="tel:+77773666265" aria-label="Позвонить"><svg viewBox="0 0 24 24" fill="#8e1515"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></a>
+      <a class="wa" href="https://wa.me/77773666265" aria-label="Написать в WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.25-.12-1.47-.72-1.7-.8s-.39-.12-.56.12-.64.8-.78.97-.29.18-.54.06a6.7 6.7 0 0 1-3.3-2.9c-.25-.43.25-.4.71-1.33a.45.45 0 0 0-.02-.42c-.06-.12-.56-1.34-.76-1.84s-.4-.42-.56-.43h-.48a.92.92 0 0 0-.66.31 2.8 2.8 0 0 0-.87 2.07 4.8 4.8 0 0 0 1 2.56 11 11 0 0 0 4.2 3.7c1.56.67 2.17.73 2.95.62a2.5 2.5 0 0 0 1.66-1.17 2 2 0 0 0 .14-1.17c-.06-.1-.23-.16-.48-.28z"/></svg></a>
+    </div>
+  </div>
+  <div class="hero">
+    <h1>Меню FIXBITE</h1>
+    <div class="big1500">🔥 Каждое блюдо — 1500 ₸</div>
+    <p style="margin-top:10px">Бургеры, донеры, пицца, суши, крылышки. Комбо, сеты и баскеты — выгоднее.</p>
+    <div class="steps"><span>1. Выберите блюда</span><span>2. Количество</span><span>3. Заказ в WhatsApp</span></div>
+  </div>
+</header>
+<div class="bar">
+  <div class="search"><input id="q" type="search" placeholder="Найти блюдо, например «пицца»" autocomplete="off"></div>
+  <div class="chips" id="chips"></div>
+</div>
+<main id="main"></main>
+<footer>
+  FIXBITE · ТРЦ Азия Парк, 3 этаж (фудкорт). Фото — иллюстрации блюд, подача может отличаться. Наличие и время готовности подтвердим в WhatsApp.<br>
+  Телефон / WhatsApp: <a href="tel:+77773666265">8 777 366 62 65</a>
+</footer>
+<div class="cartbar" id="cartbar"><button id="openCart"><span id="cbCount">Корзина</span><span id="cbSum"></span></button></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Корзина">
+  <div class="panel">
+    <div class="ph2"><b>Ваш заказ</b><button class="x" id="close" aria-label="Закрыть">✕</button></div>
+    <div class="items" id="items"></div>
+    <div class="tot"><span>Итого</span><span id="tot"></span></div>
+    <div class="hint">Мы ответим в WhatsApp и подтвердим заказ.</div>
+    <div class="form">
+      <input id="fName" placeholder="Ваше имя" autocomplete="name">
+      <input id="fAddr" placeholder="Адрес доставки (или «заберу сам»)" autocomplete="street-address">
+      <textarea id="fNote" placeholder="Комментарий: соусы, время, без лука…"></textarea>
+    </div>
+    <a class="send" id="send" href="#" target="_blank" rel="noopener">Отправить заказ в WhatsApp</a>
+    <button class="clear" id="clear">Очистить корзину</button>
+  </div>
+</div>
+<script>
+const PHONE="77773666265";
+
+const ORDER=["Бургеры","Донеры","Пицца","Суши и роллы","Курица и закуски","Фри и напитки","Комбо","FIXBITE сеты","Акции","Баскеты","Детское меню"];
+const SHORT={"Бургеры":"🍔 Бургеры","Донеры":"🌯 Донеры","Пицца":"🍕 Пицца","Суши и роллы":"🍣 Суши","Курица и закуски":"🍗 Курица","Фри и напитки":"🍟 Фри и напитки","Комбо":"🎁 Комбо","FIXBITE сеты":"🎉 Сеты","Акции":"🔥 Акции","Баскеты":"🪣 Баскеты","Детское меню":"🧒 Детское"};
+const NOTE={"Бургеры":"Любой бургер — 1500 ₸","Пицца":"Любая пицца — 1500 ₸","Суши и роллы":"Любой ролл — 1500 ₸","Комбо":"Бургер или донер + фри + кола — выгоднее"};
+const $=id=>document.getElementById(id);
+const fmt=n=>Math.round(n).toLocaleString("ru-RU").replace(/,/g," ")+" ₸";
+let P=[],cart={},cat="all",q="";
+try{cart=JSON.parse(localStorage.getItem("fb-cart")||"{}")}catch(e){cart={}}
+const save=()=>{try{localStorage.setItem("fb-cart",JSON.stringify(cart))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const unitWord=u=>u==="кг"?"кг":u==="шт"?"шт":"уп";
+function chips(){
+  const cats=ORDER.filter(c=>P.some(p=>p.cat===c));
+  $("chips").innerHTML=`<button data-c="all" class="${cat==="all"?"on":""}">Все</button>`+cats.map(c=>`<button data-c="${esc(c)}" class="${cat===c?"on":""}">${SHORT[c]||c}</button>`).join("");
+}
+function stepper(p,qv){return `<div class="step"><button data-a="-" data-id="${p.id}" aria-label="Меньше">−</button><input inputmode="decimal" data-id="${p.id}" value="${qv}" aria-label="Количество"><span>${unitWord(p.unit)}</span><button data-a="+" data-id="${p.id}" aria-label="Больше">+</button></div>`}
+function card(p){
+  const qv=cart[p.id];
+  return `<div class="card" id="c${p.id}">${p.note?`<div class="tag">${esc(p.note)}</div>`:""}
+  <div class="ph">${p.img?`<img loading="lazy" src="${p.img}" alt="${esc(p.name)}">`:`<div class="none">${p.emo||"🍽️"}</div>`}</div>
+  <div class="info">${p.brand?`<div class="br">${esc(p.brand)}</div>`:""}<div class="nm">${esc(p.name)}</div>
+  ${(p.sub||p.w)?`<div class="sb">${esc([p.sub,p.w?("вес "+p.w):""].filter(Boolean).join(" · "))}</div>`:""}
+  <div class="pr">${fmt(p.price)}</div>
+  ${qv?stepper(p,qv):`<button class="add" data-add="${p.id}">В корзину</button>`}</div></div>`;
+}
+function render(){
+  const ql=q.trim().toLowerCase();
+  const list=P.filter(p=>(cat==="all"||p.cat===cat)&&(!ql||(p.name+" "+p.sub+" "+p.brand+" "+p.cat).toLowerCase().includes(ql)));
+  if(!list.length){$("main").innerHTML=`<div class="empty">Ничего не найдено. Попробуйте другое слово или напишите нам в WhatsApp.</div>`;return}
+  $("main").innerHTML=ORDER.map(c=>{const it=list.filter(p=>p.cat===c);if(!it.length)return"";
+    return `<h2>${esc(c)} <small>${it.length}</small></h2>${NOTE[c]?`<div class="sec-note">${NOTE[c]}</div>`:""}<div class="grid">${it.map(card).join("")}</div>`}).join("");
+}
+function rerender(id){const p=P.find(x=>x.id==id),el=$("c"+id);if(p&&el){const t=document.createElement("div");t.innerHTML=card(p);el.replaceWith(t.firstChild)}bar();if($("sheet").classList.contains("open"))drawCart()}
+function setQ(id,v){v=Math.round(v*10)/10;if(!(v>0))delete cart[id];else cart[id]=v;save();rerender(id)}
+const num=s=>parseFloat(String(s).replace(",","."));
+function totals(){let n=0,s=0,kg=false;for(const id in cart){const p=P.find(x=>x.id==id);if(!p)continue;n++;s+=p.price*cart[id];if(p.unit==="кг")kg=true}return{n,s,kg}}
+function bar(){const t=totals();$("cartbar").classList.toggle("show",t.n>0);$("cbCount").textContent=`🛒 Корзина · ${t.n} ${t.n%10===1&&t.n%100!==11?"товар":(t.n%10>=2&&t.n%10<=4&&(t.n%100<10||t.n%100>=20))?"товара":"товаров"}`;$("cbSum").textContent=(t.kg?"≈ ":"")+fmt(t.s)}
+function msg(){
+  let lines=["🍔 *Заказ FIXBITE с сайта*",""],i=0,t=totals();
+  for(const id in cart){const p=P.find(x=>x.id==id);if(!p)continue;i++;
+    lines.push(`${i}. ${p.name}${p.sub?" ("+p.sub+")":""} — ${cart[id]} шт × ${fmt(p.price)} = ${fmt(p.price*cart[id])}`)}
+  lines.push("",`Итого: *${fmt(t.s)}*`);
+  const n=$("fName").value.trim(),a=$("fAddr").value.trim(),c=$("fNote").value.trim();
+  if(n)lines.push("Имя: "+n);if(a)lines.push("Адрес: "+a);if(c)lines.push("Комментарий: "+c);
+  return lines.join("\n");
+}
+function drawCart(){
+  const ids=Object.keys(cart);
+  $("items").innerHTML=ids.length?ids.map(id=>{const p=P.find(x=>x.id==id);if(!p)return"";return `<div class="row">${p.img?`<img src="${p.img}" alt="">`:`<img alt="">`}<div class="t"><b>${esc(p.name)}</b><span>${fmt(p.price)} · ${fmt(p.price*cart[id])}</span></div>${stepper(p,cart[id])}</div>`}).join(""):`<div class="empty">Корзина пуста</div>`;
+  $("tot").textContent=(totals().kg?"≈ ":"")+fmt(totals().s);
+  $("send").href="https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg());
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-add]");if(a){const p=P.find(x=>x.id==a.dataset.add);setQ(p.id,1);return}
+  const b=e.target.closest("[data-a]");if(b){const id=b.dataset.id;const cur=cart[id]||0;setQ(id,b.dataset.a==="+"?cur+1:Math.max(0,cur-1));return}
+  const c=e.target.closest("#chips button");if(c){cat=c.dataset.c;chips();render();window.scrollTo({top:document.querySelector(".bar").offsetTop,behavior:"smooth"})}
+});
+document.addEventListener("change",e=>{const t=e.target;if(t.matches(".step input")){const v=num(t.value);setQ(t.dataset.id,isNaN(v)?0:v)}});
+$("q").addEventListener("input",e=>{q=e.target.value;render()});
+$("openCart").addEventListener("click",()=>{drawCart();$("sheet").classList.add("open")});
+$("close").addEventListener("click",()=>$("sheet").classList.remove("open"));
+$("sheet").addEventListener("click",e=>{if(e.target.id==="sheet")$("sheet").classList.remove("open")});
+["fName","fAddr","fNote"].forEach(id=>$(id).addEventListener("input",()=>{$("send").href="https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg());try{localStorage.setItem("fb-"+id,$(id).value)}catch(e){}}));
+["fName","fAddr"].forEach(id=>{try{$(id).value=localStorage.getItem("fb-"+id)||""}catch(e){}});
+$("send").addEventListener("click",e=>{if(!Object.keys(cart).length){e.preventDefault();return}$("send").href="https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg())});
+$("clear").addEventListener("click",()=>{cart={};save();render();bar();drawCart()});
+fetch("products.json").then(r=>r.json()).then(d=>{P=d;for(const id in cart)if(!P.some(p=>p.id==id))delete cart[id];chips();render();bar()});
+</script>
+</body>
+</html>
